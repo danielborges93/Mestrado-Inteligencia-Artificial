@@ -72,7 +72,7 @@ public class Questao1 {
 	/*
 	 Formato geral da tabela:
 	
-	 | op1 | op2 | ... | prepo1 | prepo2 | prepo2 | ... | conjunção | implica |
+	 | operador1 | operador2 | ... | prepo1 | prepo2 | prepo2 | ... | conjunção | implica |
 	 */
 	boolean[][] tabelaVerdade = new boolean[quantLinhas][quantColunas];
 	preencherTabelaVerdade(tabelaVerdade, quantOperandos);

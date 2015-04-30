@@ -103,6 +103,12 @@ public class Proposicao {
 	return pos.toString();
     }
 
+    /**
+     * Resolve a expressão com os valores dados.
+     *
+     * @param valores <code>Map</code> com os valores de cada operando.
+     * @return Retora o valor booleano resultante da expressão.
+     */
     public boolean resolver(Map<Character, Boolean> valores) {
 	// Criar uma cópia da expressão posfixa para trabalhar com ela
 	String pos = this.posfixa;
