@@ -22,8 +22,8 @@ public class Pilha {
      * @param c Caractere a ser empilhado.
      */
     public void empilha(char c) {
-        // Adicionar o caractere na lista
-        this.caracteres.add(c);
+	// Adicionar o caractere na lista
+	this.caracteres.add(c);
     }
 
     /**
@@ -32,14 +32,14 @@ public class Pilha {
      * @return Caractere do topo da pilha.
      */
     public char desempilha() {
-        // Recuperar o tamanho atual da pilha
-        int tamanho = this.caracteres.size();
+	// Recuperar o tamanho atual da pilha
+	int tamanho = this.caracteres.size();
 
-        // Remover e recuperar o último caractere da pilha
-        char c = this.caracteres.remove(tamanho - 1);
+	// Remover e recuperar o último caractere da pilha
+	char c = this.caracteres.remove(tamanho - 1);
 
-        // Retornar o caractere
-        return c;
+	// Retornar o caractere
+	return c;
     }
 
     /**
@@ -49,8 +49,29 @@ public class Pilha {
      * <code>false</code>.
      */
     public boolean vazia() {
-        // Verificar se está vazia
-        return this.caracteres.isEmpty();
+	// Verificar se está vazia
+	return this.caracteres.isEmpty();
+    }
+
+    /**
+     * Recupera o caractere que está no topo da pilha.
+     *
+     * @return Retorna o caractere que está no topo da pilha.
+     */
+    public char topo() {
+	// Recuperar o tamanho atual da pilha
+	int tamanho = this.caracteres.size();
+
+	// Recuperar o último caractere da pilha
+	char c = this.caracteres.get(tamanho - 1);
+
+	// Retornar o caractere
+	return c;
+    }
+    
+    @Override
+    public String toString() {
+	return this.caracteres.toString();
     }
 
 }

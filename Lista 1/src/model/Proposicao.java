@@ -38,44 +38,68 @@ public class Proposicao {
      */
     public Proposicao(String infixa) {
 	this.infixa = infixa;
-	this.posfixa = this.converter(infixa);
+	this.posfixa = this.converter();
     }
 
     /**
      * Converte da forma infixa para a posfixa.
      *
-     * @param infixa Expressão no formato infixo.
      * @return Retorna uma <code>String</code> no formato posfixo.
      */
-    private String converter(String infixa) {
+    private String converter() {
 
 	StringBuilder pos = new StringBuilder();
 	Pilha pilha = new Pilha();
-	
-	for (char c : infixa.toCharArray()) {
+
+	for (char c : this.infixa.toCharArray()) {
 	    switch (c) {
 		case '(':
 		    pilha.empilha(c);
 		    break;
 		case ')':
-		    char topo;
-		    do {
-			topo = pilha.desempilha();
+		    char topo = pilha.desempilha();
+		    while (topo != '(') {
 			pos.append(topo);
-		    } while(topo != '(');
+			topo = pilha.desempilha();
+		    }
 		    break;
 		case '¬':
+		    pilha.empilha(c);
 		    break;
 		case '^':
+		    while (!pilha.vazia() && pilha.topo() == '¬') {
+			char op = pilha.desempilha();
+			pos.append(op);
+		    }
+		    pilha.empilha(c);
 		    break;
 		case 'v':
+		    while (!pilha.vazia() && (pilha.topo() == '¬' || pilha.topo() == '^')) {
+			char op = pilha.desempilha();
+			pos.append(op);
+		    }
+		    pilha.empilha(c);
 		    break;
 		case '>':
+		    while (!pilha.vazia() && (pilha.topo() == '¬' || pilha.topo() == '^' || pilha.topo() == 'v')) {
+			char op = pilha.desempilha();
+			pos.append(op);
+		    }
+		    pilha.empilha(c);
 		    break;
 		default:
 		    pos.append(c);
 		    break;
 	    }
+	    System.out.println("char c = " + c);
+	    System.out.println("posfix = " + pos);
+	    System.out.println("pilha  = " + pilha);
+	    System.out.println("");
+	}
+
+	while (!pilha.vazia()) {
+	    char c = pilha.desempilha();
+	    pos.append(c);
 	}
 
 	return pos.toString();
@@ -97,6 +121,21 @@ public class Proposicao {
      */
     public String getPosfixa() {
 	return posfixa;
+    }
+
+    /**
+     * Utilizado para testar...
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+	String in = "A^B^(AvC)";
+
+	Proposicao p = new Proposicao(in);
+
+	String pos = p.converter();
+
+	System.out.println(pos);
     }
 
 }
