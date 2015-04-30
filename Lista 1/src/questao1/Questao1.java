@@ -1,8 +1,10 @@
 package questao1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import utils.input.Leitor;
 import model.Proposicao;
@@ -64,16 +66,30 @@ public class Questao1 {
 	int quantOperandos = operandosList.size();
 	int quantProposicoes = proposicoesArray.length;
 
+	int quantLinhas = (int) Math.exp(quantOperandos);
+	int quantColunas = quantOperandos + quantProposicoes + 2;
+
 	/*
 	 Formato geral da tabela:
 	
 	 | op1 | op2 | ... | prepo1 | prepo2 | prepo2 | ... | conjunção | implica |
 	 */
-	boolean[][] tabelaVerdade
-		= new boolean[(int) Math.exp(quantOperandos) + 1][quantOperandos + quantProposicoes + 2];
+	boolean[][] tabelaVerdade = new boolean[quantLinhas][quantColunas];
 	preencherTabelaVerdade(tabelaVerdade, quantOperandos);
-	
-	
+
+	// Completar o resto da tabela verdade linha por linha
+	for(boolean[] linha : tabelaVerdade) {
+	    // Map com os valores dos operandos
+	    Map<Character, Boolean> valores = new HashMap<>();
+	    for(int i=0; i<operandosList.size(); i++) {
+		char operando = operandosList.get(i);
+		boolean valor = linha[i];
+		valores.put(operando, valor);
+	    }
+	    
+	    // Completar os operandos
+	    
+	}
 
     }
 
