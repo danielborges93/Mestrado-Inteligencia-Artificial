@@ -81,7 +81,7 @@ public class Questao1 {
 	int quantOperandos = operandosList.size();
 	int quantProposicoes = proposicoesArray.length;
 
-	int quantLinhas = (int) Math.exp(quantOperandos);
+	int quantLinhas = (int) Math.pow(2, quantOperandos);
 	int quantColunas = quantOperandos + quantProposicoes + 5;
 
 	/*
@@ -92,6 +92,8 @@ public class Questao1 {
 	boolean[][] tabelaVerdade = new boolean[quantLinhas][quantColunas];
 	preencherTabelaVerdade(tabelaVerdade, quantOperandos);
 
+//	imprimirTabelaVerdade(tabelaVerdade);
+//	System.exit(0);
 	// Completar o resto da tabela verdade linha por linha
 	for (boolean[] linha : tabelaVerdade) {
 	    // Map com os valores dos operandos
@@ -120,7 +122,7 @@ public class Questao1 {
 		    conjuncaoStr.append("^");
 		}
 	    }
-
+	    
 	    // Resolver a conjunção
 	    Expressao conjuncao = new Expressao(conjuncaoStr.toString());
 	    linha[colunaAtual++] = conjuncao.resolver(valores);
@@ -141,16 +143,19 @@ public class Questao1 {
 	    String consequencia2Str = "¬(" + consequenciaStr + ")";
 	    Expressao consequencia2 = new Expressao(consequencia2Str);
 	    linha[colunaAtual++] = consequencia2.resolver(valores);
-
+	    
 	    // Resolver o implica do teorema 1
 	    String teorema2Str = ""
-		    + (linha[colunaAtual - 2] ? 't' : 'f')
+		    + (linha[colunaAtual - 4] ? 't' : 'f')
 		    + ">"
 		    + (linha[colunaAtual - 1] ? 't' : 'f');
 	    Expressao teorema2 = new Expressao(teorema2Str);
 	    linha[colunaAtual++] = teorema2.resolver(valores);
 
 	}
+
+	// Imprimir a tabela verdade
+	imprimirTabelaVerdade(tabelaVerdade, operandosList, proposicoesList, consequenciaStr, ("¬(" + consequenciaStr + ")"));
 
     }
 
@@ -177,21 +182,43 @@ public class Questao1 {
 	    }
 	}
 
-	for (boolean[] linha : tabelaVerdade) {
-	    for (int i = 0; i < linha.length / 2; i++) {
-		boolean temp = linha[i];
-		linha[i] = linha[linha.length - i - 1];
-		linha[linha.length - i - 1] = temp;
-	    }
+//	for (boolean[] linha : tabelaVerdade) {
+//	    for (int i = 0; i < linha.length / 2; i++) {
+//		boolean temp = linha[i];
+//		linha[i] = linha[linha.length - i - 1];
+//		linha[linha.length - i - 1] = temp;
+//	    }
+//	}
+    }
+
+    /**
+     * Imprime a tabela verdade.
+     *
+     * @param tabelaVerdade Tabela verdade.
+     */
+    private void imprimirTabelaVerdade(boolean[][] tabelaVerdade, List<Character> operandosList, List<Expressao> proposicoes, String consequencia1, String consequencia2) {
+
+	for (char c : operandosList) {
+	    System.out.print(c);
+	    System.out.print("\t");
 	}
-	/*
-	 for (int i = 0; i < qtdNumeros; i++) {
-	 for (int j=0; j<qtd; j++) {
-	 System.out.print(tabelaVerdade[i][j] + "\t");
-	 }
-	 System.out.println("");
-	 }
-	 */
+	for (Expressao expressao : proposicoes) {
+	    System.out.print(expressao.getInfixa());
+	    System.out.print("\t");
+	}
+	System.out.print("conj.\t");
+	System.out.print(consequencia1 + "\t");
+	System.out.print("teor. 1\t");
+	System.out.print(consequencia2 + "\t");
+	System.out.print("teor. 2\t");
+	System.out.println("");
+	for (boolean[] linha : tabelaVerdade) {
+	    for (boolean coluna : linha) {
+		System.out.print(coluna);
+		System.out.print("\t");
+	    }
+	    System.out.println();
+	}
     }
 
 }

@@ -131,25 +131,25 @@ public class Expressao {
 		    break;
 
 		case '^':
-		    v1 = pilha.desempilha();
 		    v2 = pilha.desempilha();
+		    v1 = pilha.desempilha();
 		    v1Bool = (v1 == 't');
 		    v2Bool = (v2 == 't');
-		    resBool = (v1Bool && v1Bool);
+		    resBool = (v1Bool && v2Bool);
 		    res = resBool ? 't' : 'f';
 		    break;
 
 		case 'v':
-		    v1 = pilha.desempilha();
 		    v2 = pilha.desempilha();
+		    v1 = pilha.desempilha();
 		    v1Bool = (v1 == 't');
 		    v2Bool = (v2 == 't');
-		    resBool = (v1Bool || v1Bool);
+		    resBool = (v1Bool || v2Bool);
 		    res = resBool ? 't' : 'f';
 		    break;
 		case '>':
-		    v1 = pilha.desempilha();
 		    v2 = pilha.desempilha();
+		    v1 = pilha.desempilha();
 
 		    if (v1 == 't' && v2 == 'f') {
 			res = 'f';
@@ -204,7 +204,7 @@ public class Expressao {
 
 	Map<Character, Boolean> valores = new HashMap<>();
 	valores.put('A', true);
-	valores.put('B', true);
+	valores.put('B', false);
 
 	System.out.println(p.resolver(valores));
 
