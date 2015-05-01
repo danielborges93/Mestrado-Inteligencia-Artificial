@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import utils.input.Leitor;
-import model.Proposicao;
+import model.Expressao;
 
 /**
  * Resolução da questão 1:<br/>
@@ -22,6 +22,13 @@ public class Questao1 {
      * Executa a questão.
      */
     public void exec() {
+	comTabelaVerdade();
+    }
+
+    /**
+     * Executa a atividade com a tabela verdade.
+     */
+    private void comTabelaVerdade() {
 
 	// Ler todas as proposições
 	System.out.println("Digite as proposições: ");
@@ -29,23 +36,20 @@ public class Questao1 {
 
 	// Ler a consequência
 	System.out.println("Digite a consequência: ");
-	String consequencia = Leitor.lerLinha();
+	String consequenciaStr = Leitor.lerLinha();
 
 	// Guardar as proposições em um array
 	String[] proposicoesArray = proposicoesString.split(", ");
 
-	/*
-	 * Converter as proposições para o formato posfixo e salvar em uma lista
-	 *
-	 * Aproveitar o 'for' para guardar os operandos
-	 */
-	List<Proposicao> proposicoesList = new ArrayList<>();
+//	Converter as proposições para o formato posfixo e salvar em uma lista
+//	Aproveitar o 'for' para guardar os operandos
+	List<Expressao> proposicoesList = new ArrayList<>();
 	Set<Character> operandosSet = new HashSet<>();
 
 	for (String proposicao : proposicoesArray) {
 	    // Converter
-	    Proposicao posfixa = new Proposicao(proposicao);
-	    proposicoesList.add(posfixa);
+	    Expressao expressao = new Expressao(proposicao);
+	    proposicoesList.add(expressao);
 
 	    // Recuperar os operandos
 	    for (char c : proposicao.toCharArray()) {
@@ -59,6 +63,17 @@ public class Questao1 {
 	    }
 	}
 
+	// Fazer o mesmo com a consequência
+	for (char c : consequenciaStr.toCharArray()) {
+	    /*
+	     * Verificar se o caractere está no intervalo [A-Z] e
+	     * é diferente de 'v'
+	     */
+	    if (Character.isAlphabetic(c) && c != 'v') {
+		operandosSet.add(c);
+	    }
+	}
+
 	// Converter de Set para List
 	List<Character> operandosList = new ArrayList<>(operandosSet);
 
@@ -67,28 +82,74 @@ public class Questao1 {
 	int quantProposicoes = proposicoesArray.length;
 
 	int quantLinhas = (int) Math.exp(quantOperandos);
-	int quantColunas = quantOperandos + quantProposicoes + 2;
+	int quantColunas = quantOperandos + quantProposicoes + 5;
 
 	/*
 	 Formato geral da tabela:
 	
-	 | operador1 | operador2 | ... | prepo1 | prepo2 | prepo2 | ... | conjunção | implica |
+	 | operador1 | operador2 | ... | propo1 | propo2 | ... | conjunção | consequência1 | implica1 | consequência2 | implica2 |
 	 */
 	boolean[][] tabelaVerdade = new boolean[quantLinhas][quantColunas];
 	preencherTabelaVerdade(tabelaVerdade, quantOperandos);
 
 	// Completar o resto da tabela verdade linha por linha
-	for(boolean[] linha : tabelaVerdade) {
+	for (boolean[] linha : tabelaVerdade) {
 	    // Map com os valores dos operandos
 	    Map<Character, Boolean> valores = new HashMap<>();
-	    for(int i=0; i<operandosList.size(); i++) {
+	    for (int i = 0; i < quantOperandos; i++) {
 		char operando = operandosList.get(i);
 		boolean valor = linha[i];
 		valores.put(operando, valor);
 	    }
-	    
-	    // Completar os operandos
-	    
+
+	    // Resolver as proposições
+	    // Aproveitar o for para formar a expressão da conjunção
+	    StringBuilder conjuncaoStr = new StringBuilder();
+
+	    int colunaAtual = quantOperandos;
+
+	    for (; colunaAtual < quantOperandos + quantProposicoes; colunaAtual++) {
+		Expressao proposicao = proposicoesList.get(colunaAtual - quantOperandos);
+		boolean res = proposicao.resolver(valores);
+		linha[colunaAtual] = res;
+
+		char c = res ? 't' : 'f';
+		conjuncaoStr.append(c);
+
+		if (colunaAtual < quantOperandos + quantProposicoes - 1) {
+		    conjuncaoStr.append("^");
+		}
+	    }
+
+	    // Resolver a conjunção
+	    Expressao conjuncao = new Expressao(conjuncaoStr.toString());
+	    linha[colunaAtual++] = conjuncao.resolver(valores);
+
+	    // Resolver a consequência do teorema 1
+	    Expressao consequencia = new Expressao(consequenciaStr);
+	    linha[colunaAtual++] = consequencia.resolver(valores);
+
+	    // Resolver o implica do teorema 1
+	    String teorema1Str = ""
+		    + (linha[colunaAtual - 2] ? 't' : 'f')
+		    + ">"
+		    + (linha[colunaAtual - 1] ? 't' : 'f');
+	    Expressao teorema1 = new Expressao(teorema1Str);
+	    linha[colunaAtual++] = teorema1.resolver(valores);
+
+	    // Resolver a consequência do teorema 2
+	    String consequencia2Str = "¬(" + consequenciaStr + ")";
+	    Expressao consequencia2 = new Expressao(consequencia2Str);
+	    linha[colunaAtual++] = consequencia2.resolver(valores);
+
+	    // Resolver o implica do teorema 1
+	    String teorema2Str = ""
+		    + (linha[colunaAtual - 2] ? 't' : 'f')
+		    + ">"
+		    + (linha[colunaAtual - 1] ? 't' : 'f');
+	    Expressao teorema2 = new Expressao(teorema2Str);
+	    linha[colunaAtual++] = teorema2.resolver(valores);
+
 	}
 
     }

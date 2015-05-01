@@ -21,7 +21,7 @@ import utils.posfixa.Pilha;
  *
  * @author danielborges93
  */
-public class Proposicao {
+public class Expressao {
 
     /**
      * String que representa a expressão na forma infixa.
@@ -38,7 +38,7 @@ public class Proposicao {
      *
      * @param infixa Expressão na forma infixa.
      */
-    public Proposicao(String infixa) {
+    public Expressao(String infixa) {
 	this.infixa = infixa;
 	this.posfixa = this.converter();
     }
@@ -196,7 +196,7 @@ public class Proposicao {
     public static void main(String[] args) {
 	String in = "A^B";
 
-	Proposicao p = new Proposicao(in);
+	Expressao p = new Expressao(in);
 
 	String pos = p.converter();
 
