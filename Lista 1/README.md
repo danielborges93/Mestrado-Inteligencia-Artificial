@@ -12,7 +12,7 @@
 
 ### Questões implementadas
 - [ ] 1
-  - [ ] i
+  - [x] i
   - [ ] ii
 - [ ] 2
 - [ ] 3
