@@ -198,27 +198,44 @@ public class Questao1 {
      */
     private void imprimirTabelaVerdade(boolean[][] tabelaVerdade, List<Character> operandosList, List<Expressao> proposicoes, String consequencia1, String consequencia2) {
 
+	for (int i=0; i<tabelaVerdade[0].length; i++) {
+	    System.out.print("++++++++");
+	}
+	System.out.println("|");
 	for (char c : operandosList) {
+	    System.out.print("|");
 	    System.out.print(c);
 	    System.out.print("\t");
 	}
 	for (Expressao expressao : proposicoes) {
+	    System.out.print("|");
 	    System.out.print(expressao.getInfixa());
 	    System.out.print("\t");
 	}
-	System.out.print("conj.\t");
-	System.out.print(consequencia1 + "\t");
-	System.out.print("teor. 1\t");
-	System.out.print(consequencia2 + "\t");
-	System.out.print("teor. 2\t");
-	System.out.println("");
+	System.out.print("|conj.\t");
+	System.out.print("|"+consequencia1 + "\t");
+	System.out.print("|teo. 1\t");
+	System.out.print("|"+consequencia2 + "\t");
+	System.out.print("|teo. 2\t");
+	System.out.println("|");
+	System.out.print("+");
+	for (int i=0; i<tabelaVerdade[0].length; i++) {
+	    System.out.print("++++++++");
+	}
+	System.out.println();
 	for (boolean[] linha : tabelaVerdade) {
 	    for (boolean coluna : linha) {
+		System.out.print("|");
 		System.out.print(coluna);
 		System.out.print("\t");
 	    }
-	    System.out.println();
+	    System.out.println("|");
 	}
+	System.out.print("+");
+	for (int i=0; i<tabelaVerdade[0].length; i++) {
+	    System.out.print("++++++++");
+	}
+	System.out.println();
     }
 
 }
