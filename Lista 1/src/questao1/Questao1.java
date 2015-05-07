@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import utils.input.Leitor;
 import model.Expressao;
 
 /**
@@ -20,23 +19,23 @@ public class Questao1 {
 
     /**
      * Executa a questão.
+     *
+     * @param proposicoesString <code>String</code> com todas as preposições
+     * separadas por vírgula.
+     * @param consequenciaStr <code>String</code> com a consequência.
      */
-    public void exec() {
-	comTabelaVerdade();
+    public void exec(String proposicoesString, String consequenciaStr) {
+	// Executar usando a tabela verdade
+	comTabelaVerdade(proposicoesString, consequenciaStr);
+	
+	// Executar sem usar a tabela verdade
+	semTabelaVerdade(proposicoesString, consequenciaStr);
     }
 
     /**
      * Executa a atividade com a tabela verdade.
      */
-    private void comTabelaVerdade() {
-
-	// Ler todas as proposições
-	System.out.println("Digite as proposições: ");
-	String proposicoesString = Leitor.lerLinha();
-
-	// Ler a consequência
-	System.out.println("Digite a consequência: ");
-	String consequenciaStr = Leitor.lerLinha();
+    private void comTabelaVerdade(String proposicoesString, String consequenciaStr) {
 
 	// Guardar as proposições em um array
 	String[] proposicoesArray = proposicoesString.split(", ");
@@ -122,7 +121,7 @@ public class Questao1 {
 		    conjuncaoStr.append("^");
 		}
 	    }
-	    
+
 	    // Resolver a conjunção
 	    Expressao conjuncao = new Expressao(conjuncaoStr.toString());
 	    linha[colunaAtual++] = conjuncao.resolver(valores);
@@ -143,7 +142,7 @@ public class Questao1 {
 	    String consequencia2Str = "¬(" + consequenciaStr + ")";
 	    Expressao consequencia2 = new Expressao(consequencia2Str);
 	    linha[colunaAtual++] = consequencia2.resolver(valores);
-	    
+
 	    // Resolver o implica do teorema 1
 	    String teorema2Str = ""
 		    + (linha[colunaAtual - 4] ? 't' : 'f')
@@ -198,7 +197,7 @@ public class Questao1 {
      */
     private void imprimirTabelaVerdade(boolean[][] tabelaVerdade, List<Character> operandosList, List<Expressao> proposicoes, String consequencia1, String consequencia2) {
 
-	for (int i=0; i<tabelaVerdade[0].length; i++) {
+	for (int i = 0; i < tabelaVerdade[0].length; i++) {
 	    System.out.print("++++++++");
 	}
 	System.out.println("|");
@@ -213,13 +212,13 @@ public class Questao1 {
 	    System.out.print("\t");
 	}
 	System.out.print("|conj.\t");
-	System.out.print("|"+consequencia1 + "\t");
+	System.out.print("|" + consequencia1 + "\t");
 	System.out.print("|teo. 1\t");
-	System.out.print("|"+consequencia2 + "\t");
+	System.out.print("|" + consequencia2 + "\t");
 	System.out.print("|teo. 2\t");
 	System.out.println("|");
 	System.out.print("+");
-	for (int i=0; i<tabelaVerdade[0].length; i++) {
+	for (int i = 0; i < tabelaVerdade[0].length; i++) {
 	    System.out.print("++++++++");
 	}
 	System.out.println();
@@ -232,10 +231,14 @@ public class Questao1 {
 	    System.out.println("|");
 	}
 	System.out.print("+");
-	for (int i=0; i<tabelaVerdade[0].length; i++) {
+	for (int i = 0; i < tabelaVerdade[0].length; i++) {
 	    System.out.print("++++++++");
 	}
 	System.out.println();
     }
 
+    private void semTabelaVerdade(String proposicoesString, String consequenciaStr) {
+	
+    }
+    
 }

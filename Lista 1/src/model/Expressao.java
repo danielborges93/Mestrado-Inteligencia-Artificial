@@ -2,7 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
-import utils.posfixa.Pilha;
+import utils.Pilha;
 
 /**
  * Classe que implementa uma proposição/expressão e faz a conversão da forma
@@ -31,7 +31,7 @@ public class Expressao {
     /**
      * String que representa a expressão na forma posfixa.
      */
-    private final String posfixa;
+    private String posfixa;
 
     /**
      * Construtor.
@@ -185,6 +185,12 @@ public class Expressao {
      * @return Retorna uma <code>String</code> com a expressão na forma posfixa.
      */
     public String getPosfixa() {
+	// Verificar se não existe a posfixa
+	if(null == this.posfixa) {
+	    this.posfixa = this.converter();
+	}
+	
+	// Retorna
 	return posfixa;
     }
 
