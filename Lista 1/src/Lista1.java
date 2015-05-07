@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import questao1.Questao1;
+import utils.input.Leitor;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,7 +23,17 @@ public class Lista1 {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        questao1();
+	// Ler todas as proposições
+	System.out.println("Digite as proposições: ");
+	String proposicoesString = Leitor.lerLinha();
+
+	// Ler a consequência
+	System.out.println("Digite a consequência: ");
+	String consequenciaStr = Leitor.lerLinha();
+
+	Questao1 questao1 = new Questao1();
+	questao1.exec(proposicoesString, consequenciaStr);
+	
 //        
 //        String str = "Av(B^C)";
 //        String[] arr = str.split("[A-Z]");
@@ -40,11 +51,6 @@ public class Lista1 {
 //        str = str.replaceFirst("([A-Z]v\\([A-Z]\\^[A-Z]\\))", "(AvB)^(AvC)");
 //        System.out.println(str);
 
-    }
-
-    private static void questao1() {
-	Questao1 questao1 = new Questao1();
-	questao1.exec();
     }
 
 }
