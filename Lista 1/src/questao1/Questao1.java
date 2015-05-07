@@ -27,7 +27,7 @@ public class Questao1 {
     public void exec(String proposicoesString, String consequenciaStr) {
 	// Executar usando a tabela verdade
 	comTabelaVerdade(proposicoesString, consequenciaStr);
-	
+
 	// Executar sem usar a tabela verdade
 	semTabelaVerdade(proposicoesString, consequenciaStr);
     }
@@ -238,7 +238,7 @@ public class Questao1 {
     }
 
     private void semTabelaVerdade(String proposicoesString, String consequenciaStr) {
-	
+
     }
-    
+
 }
