@@ -87,7 +87,7 @@ public class Questao1 {
 	/*
 	 Formato geral da tabela:
 	
-	 | operador1 | operador2 | ... | propo1 | propo2 | ... | conjunção | consequência1 | implica1 | consequência2 | implica2 |
+	 | operador1 | operador2 | ... | propo1 | propo2 | ... | conjunção | consequência1 | teorema1 | consequência2 | teorema2 |
 	 */
 	boolean[][] tabelaVerdade = new boolean[quantLinhas][quantColunas];
 	preencherTabelaVerdade(tabelaVerdade, quantOperandos);
@@ -147,7 +147,7 @@ public class Questao1 {
 	    // Resolver o implica do teorema 1
 	    String teorema2Str = ""
 		    + (linha[colunaAtual - 4] ? 't' : 'f')
-		    + ">"
+		    + "^"
 		    + (linha[colunaAtual - 1] ? 't' : 'f');
 	    Expressao teorema2 = new Expressao(teorema2Str);
 	    linha[colunaAtual++] = teorema2.resolver(valores);
