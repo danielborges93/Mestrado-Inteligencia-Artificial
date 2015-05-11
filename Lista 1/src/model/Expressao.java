@@ -200,19 +200,23 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in = "A^B";
+	String in1 = "A>B";
+	String in2 = "¬AvB";
 
-	Expressao p = new Expressao(in);
+	Expressao e1 = new Expressao(in1);
+	Expressao e2 = new Expressao(in2);
 
-	String pos = p.converter();
+	String pos1 = e1.converter();
+	String pos2 = e2.converter();
 
-	System.out.println(pos);
+	System.out.println(pos1);
+	System.out.println(pos2);
 
-	Map<Character, Boolean> valores = new HashMap<>();
-	valores.put('A', true);
-	valores.put('B', false);
-
-	System.out.println(p.resolver(valores));
+//	Map<Character, Boolean> valores = new HashMap<>();
+//	valores.put('A', true);
+//	valores.put('B', false);
+//
+//	System.out.println(e1.resolver(valores));
 
     }
 
