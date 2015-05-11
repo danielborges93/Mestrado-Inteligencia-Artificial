@@ -8,20 +8,21 @@ import java.util.List;
  * infixa para a posfixa.
  *
  * @author danielborges93
+ * @param <T> Tipo do elemento da pilha.
  */
-public class Pilha {
+public class Pilha<T> {
 
     /**
      * Lista de caracteres contidos na pilha.
      */
-    private List<Character> caracteres = new LinkedList<>();
+    private final List<T> caracteres = new LinkedList<>();
 
     /**
      * Empilha um elemento na pilha.
      *
      * @param c Caractere a ser empilhado.
      */
-    public void empilha(char c) {
+    public void empilha(T c) {
 	// Adicionar o caractere na lista
 	this.caracteres.add(c);
     }
@@ -31,12 +32,12 @@ public class Pilha {
      *
      * @return Caractere do topo da pilha.
      */
-    public char desempilha() {
+    public T desempilha() {
 	// Recuperar o tamanho atual da pilha
 	int tamanho = this.caracteres.size();
 
 	// Remover e recuperar o último caractere da pilha
-	char c = this.caracteres.remove(tamanho - 1);
+	T c = this.caracteres.remove(tamanho - 1);
 
 	// Retornar o caractere
 	return c;
@@ -58,12 +59,12 @@ public class Pilha {
      *
      * @return Retorna o caractere que está no topo da pilha.
      */
-    public char topo() {
+    public T topo() {
 	// Recuperar o tamanho atual da pilha
 	int tamanho = this.caracteres.size();
 
 	// Recuperar o último caractere da pilha
-	char c = this.caracteres.get(tamanho - 1);
+	T c = this.caracteres.get(tamanho - 1);
 
 	// Retornar o caractere
 	return c;

@@ -51,7 +51,7 @@ public class Expressao {
     private String converter() {
 
 	StringBuilder pos = new StringBuilder();
-	Pilha pilha = new Pilha();
+	Pilha<Character> pilha = new Pilha<>();
 
 	for (char c : this.infixa.toCharArray()) {
 	    switch (c) {
@@ -119,7 +119,7 @@ public class Expressao {
 	    pos = pos.replaceAll("" + c, "" + valor);
 	}
 
-	Pilha pilha = new Pilha();
+	Pilha<Character> pilha = new Pilha<>();
 
 	for (char c : pos.toCharArray()) {
 	    char v1, v2, res;
