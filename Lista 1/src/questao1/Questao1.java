@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import model.Expressao;
+import model.No;
 
 /**
  * Resolução da questão 1:<br/>
@@ -155,7 +156,7 @@ public class Questao1 {
 
 	// Imprimir a tabela verdade
 	imprimirTabelaVerdade(tabelaVerdade, operandosList, proposicoesList, consequenciaStr, ("¬(" + consequenciaStr + ")"));
-
+	System.out.println();
     }
 
     /**
@@ -237,8 +238,34 @@ public class Questao1 {
 	System.out.println();
     }
 
+    /**
+     * Resolve a questão sem o uso da tabela verdade.
+     *
+     * @param proposicoesString
+     * @param consequenciaStr
+     */
     private void semTabelaVerdade(String proposicoesString, String consequenciaStr) {
-
+	
+	// Guardar as proposições em um array
+	String[] proposicoesArray = proposicoesString.split(", ");
+	
+	// Formar a expressão do teorema 1
+	StringBuilder teoremaBuilder = new StringBuilder();
+	
+	for(String proposicao : proposicoesArray) {
+	    teoremaBuilder.append("(").append(proposicao).append(")");
+	    teoremaBuilder.append("^");
+	}
+	
+	teoremaBuilder.replace(teoremaBuilder.length()-1, teoremaBuilder.length(), ">");
+	teoremaBuilder.append("(").append(consequenciaStr).append(")");
+	
+	String teorema1 = teoremaBuilder.toString();
+	
+	// Começar a busca...
+	Set<No> fronteira = new HashSet<>();
+	
+	No raiz = new No(teorema1);
     }
 
 }

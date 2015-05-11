@@ -200,7 +200,7 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "A>B";
+	String in1 = "¬(Av(B^C)v(¬D))";
 	String in2 = "¬AvB";
 
 	Expressao e1 = new Expressao(in1);
