@@ -1,5 +1,7 @@
 package model.equivalencia;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import model.No;
 
 /**
@@ -8,13 +10,47 @@ import model.No;
  */
 public abstract class Equivalencia {
     
+    /**
+     * Regex do padrão a ser encontrado.
+     */
     protected String padrao;
     
+    /**
+     * Regex do padrão a ser encontrado no formato posfixo.
+     */
+    protected String padraoPosfixa;
+    
+    /**
+     * Valor a ser substituído.
+     */
     protected String substituicao;
     
-    public boolean matches(No no) {
+    /**
+     * Valor a ser substituído no formato posfixo.
+     */
+    protected String substituicaoPosfixa;
+    
+    /**
+     * Detecta se há equivaliencias no nó especificado.
+     * @param no Nó a ser verificado.
+     * @return Retorna uma <code>String</code> com a expressão alterada.
+     */
+    public String matches(No no) {
 	
-	return false;
+	// Detectar o padrão na expressão
+	Pattern pattern = Pattern.compile(this.padraoPosfixa);
+	Matcher matcher = pattern.matcher(no.getExpressao().getPosfixa());
+	
+	// Resultado da substituições
+	String result = null;
+	
+	// Verificar se há ocorrências do padrão
+	if(matcher.find()) {
+	    // Realizar todas as substituições
+	    result = matcher.replaceAll(this.substituicaoPosfixa);
+	}
+	
+	return result;
     }
 
 }

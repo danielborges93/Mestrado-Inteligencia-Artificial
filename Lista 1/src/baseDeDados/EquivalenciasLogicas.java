@@ -1,7 +1,6 @@
 package baseDeDados;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.equivalencia.AssociatividadeE;
@@ -21,7 +20,7 @@ import model.equivalencia.Morgan2;
  *
  * @author danielborges93
  */
-public class EquivalenciasLogicas {
+public class EquivalenciasLogicas extends ArrayList<Equivalencia>{
 
     /**
      * Padrão de projeto: Singleton.
@@ -29,62 +28,56 @@ public class EquivalenciasLogicas {
     private static EquivalenciasLogicas singleton;
 
     /**
-     * Lista com todas as equivalências.
-     */
-    private final List<Equivalencia> equivalencias;
-
-    /**
      * Construtor privado para permitir apenas uma instância da classe.
      */
     private EquivalenciasLogicas() {
-	this.equivalencias = new ArrayList<>();
-
+	
 	// Instânciar todas as equivalências lógicas
 	Equivalencia equivalencia;
 
 	// Comutatividade de ^
 	equivalencia = new ComutatividadeE();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// Comutatividade de v
 	equivalencia = new ComutatividadeOU();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// Associatividade de ^
 	equivalencia = new AssociatividadeE();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// Associatividade de v
 	equivalencia = new AssociatividadeOU();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// Eliminação de nageção dupla
 	equivalencia = new EliminacaoNegacaoDupla();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// Contraposição
 	equivalencia = new Contraposicao();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// Eliminação de implicação
 	equivalencia = new EliminacaoImplicacao();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// De Morgan
 	equivalencia = new Morgan1();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// De Morgan 2
 	equivalencia = new Morgan2();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// Distributividade de ^ sobre v
 	equivalencia = new DistributividadeEsobreOU();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
 
 	// Distributividade de v sobre ^
 	equivalencia = new DistributividadeOUsobreE();
-	equivalencias.add(equivalencia);
+	add(equivalencia);
     }
 
     /**
@@ -106,16 +99,16 @@ public class EquivalenciasLogicas {
      */
     public static void main(String[] args) {
 
-	String expressao = "(A^B)";
+	String expressao = "ABC^v";
 
-	Pattern pattern = Pattern.compile("([A-Z])\\^([A-Z])");
+	Pattern pattern = Pattern.compile("([A-Z])([A-Z])([A-Z])\\^v");
 	Matcher matcher = pattern.matcher(expressao);
 
-	matcher.find();
+	System.out.println(matcher.find());
 
 	System.out.print(expressao + " = ");
-//	System.out.print(matcher.replaceAll("(¬$1^¬$2)") + " = ");
-	System.out.println(matcher.replaceAll("$2^$1"));
+//	System.out.print(matcher.replaceAll("$1$2¬$1¬>^") + " = ");
+	System.out.println(matcher.replaceAll("$1$2v$1$3v^"));
 
     }
 

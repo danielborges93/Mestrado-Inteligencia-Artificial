@@ -54,15 +54,12 @@ public class Busca {
      * @return
      */
     private No recursao(No no) {
-
-	// Verificar existem valores inválidos, ou seja, caracteres diferentes
-	// de '(', ')', '¬', '^', 'v', '>', 't' ou 'f'
-	Pattern pattern = Pattern.compile("([A-Z])");
-	Matcher matcher = pattern.matcher(no.getExpressao().getInfixa());
-	boolean invalido = matcher.find();
-
+	System.out.println("entrou na recursão: " + no);
+	// Verificar se o nó é válido
+	boolean valido = no.valido();
+	
 	// Se o nó for inválido...
-	if (invalido) {
+	if (!valido) {
 	    // Gera os nós filhos
 	    List<No> filhos = no.geraFilhos();
 

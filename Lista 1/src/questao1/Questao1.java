@@ -265,6 +265,8 @@ public class Questao1 {
 	// Começar a busca do teorema 1...
 	Busca buscaTeorema1 = new Busca(teorema1);
 	No no = buscaTeorema1.buscar();
+	
+	System.out.println(no);
     }
 
 }
