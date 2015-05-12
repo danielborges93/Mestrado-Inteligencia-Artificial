@@ -10,7 +10,7 @@ public class Contraposicao extends Equivalencia {
 	padrao = "([A-Z])>([A-Z])";
 	substituicao = "$1^(¬$2>¬$1)";
 	
-	padraoPosfixa = "([A-Z]|t|f)([A-Z]|t|f)>";
+	padraoPosfixa = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)>";
 	substituicaoPosfixa = "$1$2¬$1¬>^";
     }
     

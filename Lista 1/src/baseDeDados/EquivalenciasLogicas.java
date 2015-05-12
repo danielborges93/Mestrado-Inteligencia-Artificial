@@ -16,6 +16,7 @@ import model.equivalencia.Equivalencia;
 import model.equivalencia.Morgan1;
 import model.equivalencia.Morgan2;
 import model.equivalencia.SimplificacaoE;
+import model.equivalencia.SimplificacaoImplica;
 import model.equivalencia.SimplificacaoOU;
 
 /**
@@ -36,6 +37,18 @@ public class EquivalenciasLogicas extends ArrayList<Equivalencia>{
 	
 	// Instânciar todas as equivalências lógicas
 	Equivalencia equivalencia;
+	
+	// Simplificações de ^
+	equivalencia = new SimplificacaoE();
+	add(equivalencia);
+	
+	// Simplificações de v
+	equivalencia = new SimplificacaoOU();
+	add(equivalencia);
+	
+	// Simplificações de >
+	equivalencia = new SimplificacaoImplica();
+	add(equivalencia);
 
 	// Comutatividade de ^
 	equivalencia = new ComutatividadeE();
@@ -58,8 +71,8 @@ public class EquivalenciasLogicas extends ArrayList<Equivalencia>{
 	add(equivalencia);
 
 	// Contraposição
-	equivalencia = new Contraposicao();
-	add(equivalencia);
+//	equivalencia = new Contraposicao();
+//	add(equivalencia);
 
 	// Eliminação de implicação
 	equivalencia = new EliminacaoImplicacao();
@@ -79,14 +92,6 @@ public class EquivalenciasLogicas extends ArrayList<Equivalencia>{
 
 	// Distributividade de v sobre ^
 	equivalencia = new DistributividadeOUsobreE();
-	add(equivalencia);
-	
-	// Simplificações de ^
-	equivalencia = new SimplificacaoE();
-	add(equivalencia);
-	
-	// Simplificações de v
-	equivalencia = new SimplificacaoOU();
 	add(equivalencia);
     }
 
@@ -109,16 +114,19 @@ public class EquivalenciasLogicas extends ArrayList<Equivalencia>{
      */
     public static void main(String[] args) {
 
-	String expressao = "ABC^v";
+	String expressao = "AB^Cv";
 
-	Pattern pattern = Pattern.compile("([A-Z])([A-Z])([A-Z])\\^v");
+	Pattern pattern = Pattern.compile("(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)\\^(t|f|[A-Z]¬?)v");
 	Matcher matcher = pattern.matcher(expressao);
 
+//	AB^Cv
+//	ACvBCv^
+	
 	System.out.println(matcher.find());
 
 	System.out.print(expressao + " = ");
 //	System.out.print(matcher.replaceAll("$1$2¬$1¬>^") + " = ");
-	System.out.println(matcher.replaceAll("$1$2v$1$3v^"));
+	System.out.println(matcher.replaceAll("$1$3v$2$3v^"));
 
     }
 

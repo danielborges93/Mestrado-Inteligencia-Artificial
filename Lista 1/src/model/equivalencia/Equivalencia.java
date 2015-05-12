@@ -39,15 +39,16 @@ public abstract class Equivalencia {
 	
 	// Detectar o padrão na expressão
 	Pattern pattern = Pattern.compile(this.padraoPosfixa);
-	Matcher matcher = pattern.matcher(no.getExpressao().getPosfixa());
+	Matcher matcher = pattern.matcher(no.getExpressao());
 	
 	// Resultado da substituições
-	String result = null;
+	String result = "";
 	
 	// Verificar se há ocorrências do padrão
 	if(matcher.find()) {
 	    // Realizar todas as substituições
-	    result = matcher.replaceAll(this.substituicaoPosfixa);
+	    result += matcher.replaceAll(this.substituicaoPosfixa);
+	    System.out.println("realizou alterações em " + getClass());
 	}
 	
 	return result;

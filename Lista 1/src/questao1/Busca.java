@@ -1,9 +1,12 @@
 package questao1;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import model.Expressao;
 import model.No;
+import utils.Leitor;
 
 /**
  * Realiza a busca.
@@ -32,8 +35,11 @@ public class Busca {
      */
     public Busca(String raizStr) {
 	this.posfixasGeradas = new HashSet<>();
-	this.raiz = new No(raizStr);
-	this.posfixasGeradas.add(this.raiz.getExpressao().getPosfixa());
+	
+	Expressao expressaoRaiz = new Expressao(raizStr);
+	
+	this.raiz = new No(expressaoRaiz.getPosfixa());
+	this.posfixasGeradas.add(this.raiz.getExpressao());
     }
 
     /**
@@ -52,17 +58,34 @@ public class Busca {
      * @return
      */
     private No recursao(No no) {
+	
+	this.posfixasGeradas.add(no.getExpressao());
+	
 	System.out.println("verificar " + no);
-	System.out.println("gerados   " + posfixasGeradas);
+//	System.out.println("gerados   " + posfixasGeradas);
 	// Verificar se o nó é válido
 	boolean valido = no.valido();
 	
-	this.posfixasGeradas.add(no.getExpressao().getPosfixa());
-	
 	// Se o nó não for inválido...
 	if (!valido) {
+	    System.out.println("não é válido...");
+	    
 	    // Gera os nós filhos
 	    List<No> filhos = no.geraFilhos();
+	    
+	    // Eliminar os filhos que já foram gerados antes
+	    List<No> filhosRealmenteGerados = new ArrayList<>();
+	    for(No filho : filhos) {
+		// Se a expressão do filho não foi gerada...
+		if(!this.posfixasGeradas.contains(filho.getExpressao())) {
+		    // ...adiciona
+		    filhosRealmenteGerados.add(filho);
+		}
+	    }
+	    filhos = filhosRealmenteGerados;
+	    
+	    System.out.println("filhos: " + filhos);
+	    Leitor.lerLinha();
 	    
 	    // Resultado da busca
 	    No result = null;
@@ -70,17 +93,11 @@ public class Busca {
 	    // Chama recursivamente com todos os nós filhos
 	    for (No filho : filhos) {
 		
-		// Verificar se o filho já foi gerado
-		if(this.posfixasGeradas.contains(filho.getExpressao().getPosfixa())) {
-		    // Se já foi gerado, vai para o próximo filho
-		    continue;
-		}
-		
 		result = recursao(filho);
 
 		// Se o resultado não for nulo (acho um nó válido), para o loop
 		if (result != null) {
-		    this.posfixasGeradas.add(filho.getExpressao().getPosfixa());
+		    this.posfixasGeradas.add(filho.getExpressao());
 		    break;
 		}
 	    }

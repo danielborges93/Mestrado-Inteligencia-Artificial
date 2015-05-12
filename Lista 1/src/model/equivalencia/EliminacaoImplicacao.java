@@ -10,7 +10,7 @@ public class EliminacaoImplicacao extends Equivalencia {
 	padrao = "([A-Z])>([A-Z])";
 	substituicao = "¬$1v$2";
 	
-	padraoPosfixa = "([A-Z]|t|f)([A-Z]|t|f)>";
+	padraoPosfixa = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)>";
 	substituicaoPosfixa = "$1¬$2v";
     }
     

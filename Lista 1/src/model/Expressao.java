@@ -39,8 +39,11 @@ public class Expressao {
      * @param infixa Expressão na forma infixa.
      */
     public Expressao(String infixa) {
-	this.infixa = infixa;
-	this.posfixa = this.converter();
+
+	    this.infixa = infixa;
+	    this.posfixa = this.converter();
+	
+
     }
 
     /**
@@ -206,8 +209,8 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "(A^B)v(A^A)v(B^t)";
-	String in2 = "((AvB)^(AvC))";
+	String in1 = "((A^B)vC)";
+	String in2 = "((AvC)^(BvC))";
 
 	Expressao e1 = new Expressao(in1);
 	Expressao e2 = new Expressao(in2);

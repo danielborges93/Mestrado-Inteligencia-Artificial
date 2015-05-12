@@ -10,7 +10,7 @@ public class Morgan2 extends Equivalencia {
 	padrao = "¬[(]([A-Z])v([A-Z])[)]";
 	substituicao = "(¬$1v¬$2)";
 	
-	padraoPosfixa = "([A-Z]|t|f)([A-Z]|t|f)v¬";
+	padraoPosfixa = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)v¬";
 	substituicaoPosfixa = "$1¬$2¬^";
     }
     

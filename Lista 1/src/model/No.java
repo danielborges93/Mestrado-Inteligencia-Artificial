@@ -1,6 +1,7 @@
 package model;
 
 import baseDeDados.EquivalenciasLogicas;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -21,7 +22,7 @@ public class No {
     /**
      * <code>String</code> da expressão atual.
      */
-    private final Expressao expressao;
+    private final String expressao;
 
     /**
      * Lista de filhos gerados.
@@ -34,7 +35,7 @@ public class No {
      * @param expressaoStr
      */
     public No(String expressaoStr) {
-	this.expressao = new Expressao(expressaoStr);
+	this.expressao = expressaoStr;
     }
 
     /**
@@ -56,13 +57,23 @@ public class No {
 	    String match = equivalencia.matches(this);
 
 	    // Se houve alteração...
-	    if (match != null) {
-		// Cria um nó filho
-		No filho = new No(match);
-		filho.pai = this;
+	    if (!match.equals("")) {
 
-		// Adiciona à lista de filhos
-		filhosTemp.add(filho);
+		// Recupera as possibilidades
+		String matches[] = match.split(";");
+		
+		// Cria os nós filhos
+		for (String m : matches) {
+		    // Às vezes vem vazio, se vier, pula...
+		    if(m.equals("")) continue;
+		    
+		    No filho = new No(m);
+		    filho.pai = this;
+
+		    // Adiciona à lista de filhos
+		    filhosTemp.add(filho);
+		}
+
 	    }
 	}
 
@@ -76,7 +87,7 @@ public class No {
 	// Verificar existem valores inválidos, ou seja, caracteres diferentes
 	// de '(', ')', '¬', '^', 'v', '>', 't' ou 'f'
 	Pattern pattern = Pattern.compile("([A-Z])");
-	Matcher matcher = pattern.matcher(this.expressao.getPosfixa());
+	Matcher matcher = pattern.matcher(this.expressao);
 	return !matcher.find();
     }
 
@@ -85,13 +96,13 @@ public class No {
      *
      * @return Retorna a expressão do nó.
      */
-    public Expressao getExpressao() {
+    public String getExpressao() {
 	return expressao;
     }
 
     @Override
     public String toString() {
-	return this.expressao.getPosfixa();
+	return this.expressao;
     }
 
 }
