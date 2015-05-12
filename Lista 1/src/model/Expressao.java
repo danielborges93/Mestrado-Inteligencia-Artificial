@@ -110,6 +110,12 @@ public class Expressao {
      * @return Retora o valor booleano resultante da expressão.
      */
     public boolean resolver(Map<Character, Boolean> valores) {
+
+	// Tratamento de erro caso for um Map nulo
+	if (valores == null) {
+	    valores = new HashMap<>();
+	}
+
 	// Criar uma cópia da expressão posfixa para trabalhar com ela
 	String pos = this.posfixa;
 
@@ -186,10 +192,10 @@ public class Expressao {
      */
     public String getPosfixa() {
 	// Verificar se não existe a posfixa
-	if(null == this.posfixa) {
+	if (null == this.posfixa) {
 	    this.posfixa = this.converter();
 	}
-	
+
 	// Retorna
 	return posfixa;
     }
@@ -217,7 +223,6 @@ public class Expressao {
 //	valores.put('B', false);
 //
 //	System.out.println(e1.resolver(valores));
-
     }
 
 }

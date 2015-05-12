@@ -262,10 +262,9 @@ public class Questao1 {
 	
 	String teorema1 = teoremaBuilder.toString();
 	
-	// Começar a busca...
-	Set<No> fronteira = new HashSet<>();
-	
-	No raiz = new No(teorema1);
+	// Começar a busca do teorema 1...
+	Busca buscaTeorema1 = new Busca(teorema1);
+	No no = buscaTeorema1.buscar();
     }
 
 }
