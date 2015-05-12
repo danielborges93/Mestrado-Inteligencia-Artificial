@@ -15,6 +15,8 @@ import model.equivalencia.EliminacaoNegacaoDupla;
 import model.equivalencia.Equivalencia;
 import model.equivalencia.Morgan1;
 import model.equivalencia.Morgan2;
+import model.equivalencia.SimplificacaoE;
+import model.equivalencia.SimplificacaoOU;
 
 /**
  *
@@ -77,6 +79,14 @@ public class EquivalenciasLogicas extends ArrayList<Equivalencia>{
 
 	// Distributividade de v sobre ^
 	equivalencia = new DistributividadeOUsobreE();
+	add(equivalencia);
+	
+	// Simplificações de ^
+	equivalencia = new SimplificacaoE();
+	add(equivalencia);
+	
+	// Simplificações de v
+	equivalencia = new SimplificacaoOU();
 	add(equivalencia);
     }
 

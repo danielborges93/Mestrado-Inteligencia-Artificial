@@ -91,7 +91,7 @@ public class No {
 
     @Override
     public String toString() {
-	return this.expressao.getInfixa();
+	return this.expressao.getPosfixa();
     }
 
 }

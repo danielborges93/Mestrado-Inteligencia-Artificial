@@ -52,15 +52,18 @@ public class Busca {
      * @return
      */
     private No recursao(No no) {
-	
+	System.out.println("verificar " + no);
+	System.out.println("gerados   " + posfixasGeradas);
 	// Verificar se o nó é válido
 	boolean valido = no.valido();
+	
+	this.posfixasGeradas.add(no.getExpressao().getPosfixa());
 	
 	// Se o nó não for inválido...
 	if (!valido) {
 	    // Gera os nós filhos
 	    List<No> filhos = no.geraFilhos();
-
+	    
 	    // Resultado da busca
 	    No result = null;
 

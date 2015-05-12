@@ -27,36 +27,4 @@ public class EliminacaoNegacaoDupla extends Equivalencia {
 	substituicaoPosfixa = "$1";
     }
     
-    @Override
-    public String matches(No no) {
-	
-	// Detectar o padrão na expressão
-	Pattern pattern = Pattern.compile(this.padrao);
-	Matcher matcher = pattern.matcher(no.getExpressao().getInfixa());
-	
-	// Resultado da substituições
-	String result = null;
-	
-	// Verificar se há ocorrências do padrão
-	if(matcher.find()) {
-	    // Realizar todas as substituições
-	    result = matcher.replaceAll(this.substituicao);
-	}
-	
-	// Recuperar a expressão correta a ser utilizada
-	String input = (result == null) ? no.getExpressao().getInfixa() : result;
-	
-	// Detectar o segundo padrão na expressão
-	pattern = Pattern.compile(this.padrao2);
-	matcher = pattern.matcher(input);
-	
-	// Verificar se há ocorrências do padrão
-	if(matcher.find()) {
-	    // Realizar todas as substituições
-	    result = matcher.replaceAll(this.substituicao);
-	}
-	
-	return result;
-    }
-    
 }
