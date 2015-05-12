@@ -3,8 +3,6 @@ package questao1;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import model.No;
 
 /**
@@ -25,7 +23,7 @@ public class Busca {
      * Utilizado para impedir que entre em <i>loop</i> e gere nós
      * desnecessários.
      */
-    private Set<No> nosGerados;
+    private final Set<String> posfixasGeradas;
 
     /**
      * Construtor.
@@ -33,9 +31,9 @@ public class Busca {
      * @param raizStr Expressão raiz.
      */
     public Busca(String raizStr) {
-	this.nosGerados = new HashSet<>();
+	this.posfixasGeradas = new HashSet<>();
 	this.raiz = new No(raizStr);
-	this.nosGerados.add(this.raiz);
+	this.posfixasGeradas.add(this.raiz.getExpressao().getPosfixa());
     }
 
     /**
@@ -54,11 +52,11 @@ public class Busca {
      * @return
      */
     private No recursao(No no) {
-	System.out.println("entrou na recursão: " + no);
+	
 	// Verificar se o nó é válido
 	boolean valido = no.valido();
 	
-	// Se o nó for inválido...
+	// Se o nó não for inválido...
 	if (!valido) {
 	    // Gera os nós filhos
 	    List<No> filhos = no.geraFilhos();
@@ -68,10 +66,18 @@ public class Busca {
 
 	    // Chama recursivamente com todos os nós filhos
 	    for (No filho : filhos) {
+		
+		// Verificar se o filho já foi gerado
+		if(this.posfixasGeradas.contains(filho.getExpressao().getPosfixa())) {
+		    // Se já foi gerado, vai para o próximo filho
+		    continue;
+		}
+		
 		result = recursao(filho);
 
 		// Se o resultado não for nulo (acho um nó válido), para o loop
 		if (result != null) {
+		    this.posfixasGeradas.add(filho.getExpressao().getPosfixa());
 		    break;
 		}
 	    }
@@ -90,12 +96,8 @@ public class Busca {
      * @param args
      */
     public static void main(String[] args) {
-	String str = "(t^fvt^¬f>A)";
-
-	Pattern pattern = Pattern.compile("([A-Z])");
-	Matcher matcher = pattern.matcher(str);
-
-	System.out.println(matcher.find());
+	Busca b = new Busca("A^B");
+	System.out.println(b.posfixasGeradas);
     }
 
 }

@@ -10,7 +10,7 @@ public class ComutatividadeOU extends Equivalencia {
 	padrao = "[(]([A-Z])v([A-Z])[)]";
 	substituicao = "($2v$1)";
 	
-	padraoPosfixa = "([A-Z])([A-Z])v";
+	padraoPosfixa = "([A-Z]|t|f)([A-Z]|t|f)v";
 	substituicaoPosfixa = "$2$1v";
     }
 

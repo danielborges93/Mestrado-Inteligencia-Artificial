@@ -46,21 +46,21 @@ public class No {
 
 	// Recuperar todas as equivalências lógicas
 	EquivalenciasLogicas equivalencias = EquivalenciasLogicas.getInstance();
-	
+
 	// Lista de filhos
 	List<No> filhosTemp = new ArrayList<>();
-	
+
 	// Percorrer as equivalências para gerar os nós filhos
-	for(Equivalencia equivalencia : equivalencias) {
+	for (Equivalencia equivalencia : equivalencias) {
 	    // Recupera a string alterada
 	    String match = equivalencia.matches(this);
-	    
+
 	    // Se houve alteração...
-	    if(match != null) {
+	    if (match != null) {
 		// Cria um nó filho
 		No filho = new No(match);
 		filho.pai = this;
-		
+
 		// Adiciona à lista de filhos
 		filhosTemp.add(filho);
 	    }
@@ -68,16 +68,15 @@ public class No {
 
 	// Guardar a lista de filhos
 	this.filhos = filhosTemp;
-	
+
 	return filhosTemp;
     }
-    
-    
+
     public boolean valido() {
 	// Verificar existem valores inválidos, ou seja, caracteres diferentes
 	// de '(', ')', '¬', '^', 'v', '>', 't' ou 'f'
 	Pattern pattern = Pattern.compile("([A-Z])");
-	Matcher matcher = pattern.matcher(this.expressao.getInfixa());
+	Matcher matcher = pattern.matcher(this.expressao.getPosfixa());
 	return !matcher.find();
     }
 
@@ -89,8 +88,7 @@ public class No {
     public Expressao getExpressao() {
 	return expressao;
     }
-    
-    
+
     @Override
     public String toString() {
 	return this.expressao.getInfixa();

@@ -206,7 +206,7 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "(Av(B^C))";
+	String in1 = "(A^B)v(A^A)v(B^t)";
 	String in2 = "((AvB)^(AvC))";
 
 	Expressao e1 = new Expressao(in1);

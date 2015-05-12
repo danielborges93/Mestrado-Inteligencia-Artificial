@@ -23,7 +23,7 @@ public class EliminacaoNegacaoDupla extends Equivalencia {
 	padrao2 = "¬¬([A-Z])";
 	substituicao = "$1";
 	
-	padraoPosfixa = "([A-Z])¬¬";
+	padraoPosfixa = "([A-Z]|t|f)¬¬";
 	substituicaoPosfixa = "$1";
     }
     
