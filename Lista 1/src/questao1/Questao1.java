@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Set;
 import model.Expressao;
 import model.No;
-import utils.Pilha;
 
 /**
  * Resolução da questão 1:<br/>

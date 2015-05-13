@@ -1,5 +1,6 @@
 
 import questao1.Questao1;
+import questao3.Questao3;
 import utils.Leitor;
 
 /*
@@ -29,6 +30,9 @@ public class Lista1 {
 
 	Questao1 questao1 = new Questao1();
 	questao1.exec(proposicoesString, consequenciaStr);
+	
+	Questao3 questao3 = new Questao3();
+	questao3.exec(proposicoesString, consequenciaStr);
 	
 //        
 //        String str = "Av(B^C)";
