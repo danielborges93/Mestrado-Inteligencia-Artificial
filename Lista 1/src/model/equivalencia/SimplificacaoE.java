@@ -28,22 +28,22 @@ public class SimplificacaoE extends ComutatividadeE {
 	    // Verificar se os dois grupos são iguais
 	    if (group1.equals(group2)) { // tipo A^A
 		matcher.appendReplacement(stringBuffer, "$1");
-		System.out.println("realizou alterações em " + getClass());
+//		System.out.println("realizou alterações em " + getClass());
 	    } // Verificar se um dos dois grupos é false
 	    else if (group1.equals("f") || group2.equals("f")) { // Tipo A^f
 		matcher.appendReplacement(stringBuffer, "f");
-		System.out.println("realizou alterações em " + getClass());
+//		System.out.println("realizou alterações em " + getClass());
 	    } // Verificar se é do tipo ¬A^A
 	    else if (group1.equals(group2 + "¬") || group2.equals(group1 + "¬")) {
 		matcher.appendReplacement(stringBuffer, "f");
-		System.out.println("realizou alterações em " + getClass());
+//		System.out.println("realizou alterações em " + getClass());
 	    } // Verificar se é do tipo A^t ou t^A
 	    else if (group1.equals("t")) {
 		matcher.appendReplacement(stringBuffer, "$2");
-		System.out.println("realizou alterações em " + getClass());
+//		System.out.println("realizou alterações em " + getClass());
 	    } else if (group2.equals("t")) {
 		matcher.appendReplacement(stringBuffer, "$1");
-		System.out.println("realizou alterações em " + getClass());
+//		System.out.println("realizou alterações em " + getClass());
 	    }
 	}
 

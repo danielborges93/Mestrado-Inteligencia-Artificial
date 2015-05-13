@@ -28,15 +28,15 @@ public class SimplificacaoImplica extends Contraposicao {
 	    // Verificar se os dois grupos são iguais
 	    if (group1.equals(group2)) {
 		matcher.appendReplacement(stringBuffer, "t");
-		System.out.println("realizou alterações em " + getClass());
+//		System.out.println("realizou alterações em " + getClass());
 	    } // Verificar se é do tipo t>A
 	    else if (group1.equals("t")) {
 		matcher.appendReplacement(stringBuffer, "$2");
-		System.out.println("realizou alterações em " + getClass());
+//		System.out.println("realizou alterações em " + getClass());
 	    } // Verificar se é do tipo f>A
 	    else if (group1.equals("f")) {
 		matcher.appendReplacement(stringBuffer, "t");
-		System.out.println("realizou alterações em " + getClass());
+//		System.out.println("realizou alterações em " + getClass());
 	    }
 	}
 

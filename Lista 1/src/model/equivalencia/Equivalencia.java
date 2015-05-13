@@ -48,7 +48,7 @@ public abstract class Equivalencia {
 	if(matcher.find()) {
 	    // Realizar todas as substituições
 	    result += matcher.replaceAll(this.substituicaoPosfixa);
-	    System.out.println("realizou alterações em " + getClass());
+//	    System.out.println("realizou alterações em " + getClass());
 	}
 	
 	return result;

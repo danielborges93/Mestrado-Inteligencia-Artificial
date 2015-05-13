@@ -43,7 +43,7 @@ public class DistributividadeEsobreOU extends Equivalencia {
 	if(matcher.find()) {
 	    // Substitui todas as ocorrências
 	    result += matcher.replaceAll(substituicaoPosfixa);
-	    System.out.println("realizou alterações em " + getClass());
+//	    System.out.println("realizou alterações em " + getClass());
 	}
 	
 	// Encontrar os padrões (BvC)^A
@@ -53,7 +53,7 @@ public class DistributividadeEsobreOU extends Equivalencia {
 	// Se houver ocorrências...
 	if(matcher.find()) {
 	    result += ";" + matcher.replaceAll(substituicaoPosfixa2);
-	    System.out.println("realizou alterações em " + getClass());
+//	    System.out.println("realizou alterações em " + getClass());
 	}
 	
 	return result;

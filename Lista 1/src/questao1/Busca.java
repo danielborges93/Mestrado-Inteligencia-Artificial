@@ -61,14 +61,14 @@ public class Busca {
 	
 	this.posfixasGeradas.add(no.getExpressao());
 	
-	System.out.println("verificar " + no);
+//	System.out.println("verificar " + no);
 //	System.out.println("gerados   " + posfixasGeradas);
 	// Verificar se o nó é válido
 	boolean valido = no.valido();
 	
 	// Se o nó não for inválido...
 	if (!valido) {
-	    System.out.println("não é válido...");
+//	    System.out.println("não é válido...");
 	    
 	    // Gera os nós filhos
 	    List<No> filhos = no.geraFilhos();
@@ -84,8 +84,8 @@ public class Busca {
 	    }
 	    filhos = filhosRealmenteGerados;
 	    
-	    System.out.println("filhos: " + filhos);
-	    Leitor.lerLinha();
+//	    System.out.println("filhos: " + filhos);
+//	    Leitor.lerLinha();
 	    
 	    // Resultado da busca
 	    No result = null;
