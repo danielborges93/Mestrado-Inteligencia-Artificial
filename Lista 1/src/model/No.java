@@ -100,6 +100,14 @@ public class No {
 	return expressao;
     }
 
+    /**
+     * Recupera o pai do nó.
+     * @return Retorna o nó pai.
+     */
+    public No getPai() {
+	return pai;
+    }
+
     @Override
     public String toString() {
 	return this.expressao;

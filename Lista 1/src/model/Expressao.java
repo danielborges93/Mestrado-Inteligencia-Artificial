@@ -209,8 +209,8 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "((A^B)vC)";
-	String in2 = "((AvC)^(BvC))";
+	String in1 = "((AvB)vC)";
+	String in2 = "(Av(BvC))";
 
 	Expressao e1 = new Expressao(in1);
 	Expressao e2 = new Expressao(in2);

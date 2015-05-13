@@ -34,7 +34,7 @@ public class SimplificacaoOU extends ComutatividadeOU {
 		matcher.appendReplacement(stringBuffer, "t");
 		System.out.println("realizou alterações em " + getClass());
 	    } // Verificar se é do tipo ¬AvA
-	    else if (group1.equals("¬" + group2) || group2.equals("¬" + group1)) {
+	    else if (group1.equals(group2 + "¬") || group2.equals(group1 + "¬")) {
 		matcher.appendReplacement(stringBuffer, "t");
 		System.out.println("realizou alterações em " + getClass());
 	    } // Verificar se é do tipo Avf ou fvA

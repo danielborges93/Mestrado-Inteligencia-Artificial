@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import model.Expressao;
 import model.No;
+import utils.Pilha;
 
 /**
  * Resolução da questão 1:<br/>
@@ -245,28 +246,67 @@ public class Questao1 {
      * @param consequenciaStr
      */
     private void semTabelaVerdade(String proposicoesString, String consequenciaStr) {
-	
+
 	// Guardar as proposições em um array
 	String[] proposicoesArray = proposicoesString.split(", ");
-	
-	// Formar a expressão do teorema 1
+
+	// Formar a expressão do teorema 1 sem ser no formato do teorema,
+	// e sim depois de realizar a equivalência da eliminação da implicação
 	StringBuilder teoremaBuilder = new StringBuilder();
-	
-	for(String proposicao : proposicoesArray) {
+
+	teoremaBuilder.append("¬(");
+	for (String proposicao : proposicoesArray) {
 	    teoremaBuilder.append("(").append(proposicao).append(")");
 	    teoremaBuilder.append("^");
 	}
-	
-	teoremaBuilder.replace(teoremaBuilder.length()-1, teoremaBuilder.length(), ">");
-	teoremaBuilder.append("(").append(consequenciaStr).append(")");
-	
+	teoremaBuilder.replace(teoremaBuilder.length() - 1, teoremaBuilder.length(), ")");
+
+	teoremaBuilder.append("v(").append(consequenciaStr).append(")");
+
 	String teorema1 = teoremaBuilder.toString();
-	
+
 	// Começar a busca do teorema 1...
 	Busca buscaTeorema1 = new Busca(teorema1);
 	No no = buscaTeorema1.buscar();
 	
-	System.out.println(no);
+	System.out.println("Caminho para encontrar no teorema 1:");
+	imprimirCaminho(no);
+	System.out.println();
+	
+	// Formar a expressão do teorema 2
+	teoremaBuilder = new StringBuilder();
+
+	for (String proposicao : proposicoesArray) {
+	    teoremaBuilder.append("(").append(proposicao).append(")");
+	    teoremaBuilder.append("^");
+	}
+
+	teoremaBuilder.append("¬(").append(consequenciaStr).append(")");
+
+	String teorema2 = teoremaBuilder.toString();
+
+	// Começar a busca do teorema 1...
+	Busca buscaTeorema2 = new Busca(teorema2);
+	No no2 = buscaTeorema2.buscar();
+
+	System.out.println("Caminho para encontrar no teorema 2:");
+	imprimirCaminho(no2);
+	System.out.println();
+    }
+
+    /**
+     * Imprime o caminho que chegou até o nó especificado.
+     *
+     * @param no Último nó gerado.
+     */
+    private void imprimirCaminho(No no) {
+	// Se o nó não for nulo (não é a raiz), chama recursivamente com o pai
+	// como parámetro
+	if (no != null) {
+	    imprimirCaminho(no.getPai());
+	    System.out.println(no);
+	}
+	    
     }
 
 }
