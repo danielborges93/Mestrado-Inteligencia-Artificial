@@ -13,10 +13,11 @@ public class Construtivo extends Regra {
     public Construtivo() {
 	this.entrada1 = "^[(](¬?[A-Z])>(¬?[A-Z])[)]\\^[(](¬?[A-Z])>(¬?[A-Z])[)]$";
 	this.entrada2 = "(¬?[A-Z])v(¬?[A-Z])";
+	this.nome = "Dilema Construtivo";
     }
 
     @Override
-    public void usar(List<String> proposicoes) {
+    public boolean usar(List<String> proposicoes) {
 
 	String[] groups = new String[4];
 	String input1 = null;
@@ -36,7 +37,7 @@ public class Construtivo extends Regra {
 		groups[1] = matcher.group(2);
 		groups[2] = matcher.group(3);
 		groups[3] = matcher.group(4);
-		
+
 		input1 = proposicao;
 
 		// Parar o 'for'
@@ -50,19 +51,21 @@ public class Construtivo extends Regra {
 
 	// Se existe...
 	if (i != -1) {
-	    System.out.println("Utilizado o Dilema Construtivo com " + input1 + " e " + input2);
 	    
 	    // Cria a saída
 	    this.saida = groups[1] + "v" + groups[3];
-	    
+
 	    // Remove as duas entradas
 	    proposicoes.remove(input1);
 	    proposicoes.remove(input2);
-	    
+
 	    // Adciona a saída
 	    proposicoes.add(this.saida);
+
+	    return true;
 	}
 
+	return false;
     }
 
 }

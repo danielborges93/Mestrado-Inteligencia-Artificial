@@ -12,10 +12,11 @@ public class ModusTollens extends Regra {
 
     public ModusTollens() {
 	this.entrada1 = "^([A-Z])>([A-Z])$";
+	this.nome = "Medus Tollens";
     }
 
     @Override
-    public void usar(List<String> proposicoes) {
+    public boolean usar(List<String> proposicoes) {
 
 	// Declarar as duas entradas
 	String[] input = new String[2];
@@ -49,16 +50,18 @@ public class ModusTollens extends Regra {
 
 	// Se encontrou as duas entradas
 	if (encontrou[0] && encontrou[1]) {
-	    System.out.println("Utilizando Modus Tollens com " + input[0] + " e " + input[1]);
-
+	    
 	    // Remove as entradas da lista
 	    proposicoes.remove(input[0]);
 	    proposicoes.remove(input[1]);
 
 	    // Salva a saída
 	    proposicoes.add(this.saida);
+
+	    return true;
 	}
 
+	return false;
     }
 
 }

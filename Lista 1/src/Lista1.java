@@ -28,9 +28,14 @@ public class Lista1 {
 	System.out.println("Digite a consequência: ");
 	String consequenciaStr = Leitor.lerLinha();
 
+	System.out.println("Execução da primeira questão...");
+	System.out.println("");
 	Questao1 questao1 = new Questao1();
 	questao1.exec(proposicoesString, consequenciaStr);
 	
+	System.out.println("");
+	System.out.println("Execução da terceira questão...");
+	System.out.println("");
 	Questao3 questao3 = new Questao3();
 	questao3.exec(proposicoesString, consequenciaStr);
 	

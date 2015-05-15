@@ -12,11 +12,12 @@ public class Destrutivo extends Construtivo {
 
     public Destrutivo() {
 	super();
+	this.nome = "Dilema Destrutivo";
     }
-    
+
     @Override
-    public void usar(List<String> proposicoes) {
-	
+    public boolean usar(List<String> proposicoes) {
+
 	String[] groups = new String[4];
 	String input1 = null;
 
@@ -35,7 +36,7 @@ public class Destrutivo extends Construtivo {
 		groups[1] = matcher.group(2);
 		groups[2] = matcher.group(3);
 		groups[3] = matcher.group(4);
-		
+
 		input1 = proposicao;
 
 		// Parar o 'for'
@@ -49,19 +50,21 @@ public class Destrutivo extends Construtivo {
 
 	// Se existe...
 	if (i != -1) {
-	    System.out.println("Utilizado o Dilema Destrutivo com " + input1 + " e " + input2);
 	    
 	    // Cria a saída
 	    this.saida = "¬" + groups[0] + "v¬" + groups[2];
-	    
+
 	    // Remove as duas entradas
 	    proposicoes.remove(input1);
 	    proposicoes.remove(input2);
-	    
+
 	    // Adciona a saída
 	    proposicoes.add(this.saida);
+
+	    return true;
 	}
 
+	return false;
     }
-    
+
 }

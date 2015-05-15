@@ -20,23 +20,39 @@ public abstract class Regra {
      * Saída da regra.
      */
     protected String saida;
+    
+    /**
+     * Nome da regra.
+     */
+    protected String nome;
 
     /**
      * Usa a proposição.
      *
      * @param proposicoes Lista de proposições.
+     * @return Retorna <code>true</code> se a regra foi utilizada. Caso
+     * contrário, <code>false</code>.
      */
-    public abstract void usar(List<String> proposicoes);
-    
+    public abstract boolean usar(List<String> proposicoes);
+
+    /**
+     * Recupera o nome da regra.
+     * @return Retorna o nome da regra.
+     */
+    public String getNome() {
+	return nome;
+    }
+
     /**
      * Testar...
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String[] args) {
-	
+
 	Pattern pattern = Pattern.compile("[a]");
 	Matcher matcher = pattern.matcher("asd");
-	
+
 	System.out.println(matcher.find());
     }
 

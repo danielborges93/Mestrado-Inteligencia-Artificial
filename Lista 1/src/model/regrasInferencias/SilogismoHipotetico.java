@@ -13,10 +13,11 @@ public class SilogismoHipotetico extends Regra {
 
     public SilogismoHipotetico() {
 	this.entrada1 = "^([A-Z])>([A-Z])$";
+	this.nome = "Silogismo Hipotético";
     }
 
     @Override
-    public void usar(List<String> proposicoes) {
+    public boolean usar(List<String> proposicoes) {
 
 	// Declarar as entradas
 	String[] input = {null, null};
@@ -59,9 +60,9 @@ public class SilogismoHipotetico extends Regra {
 		    // Recupera as duas proposições para a entrada
 		    input[0] = proposicao1;
 		    input[1] = proposicao2;
-
+		    
 		    // Cria a saída
-		    this.saida = matcher.group(1) + ">" + matcher2.group(2);
+		    this.saida = matcher.group(1) + ">" + matcher2.group(1);
 
 		    // Sai do for
 		    break forPrincipal;
@@ -71,15 +72,18 @@ public class SilogismoHipotetico extends Regra {
 
 	// Se existem as duas entradas...
 	if (input[0] != null && input[1] != null) {
-	    System.out.println("Utilizando Silogismo Hipotético com " + input[0] + " e " + input[1]);
-
+	    
 	    // Remove as duas entradas
 	    proposicoes.remove(input[0]);
 	    proposicoes.remove(input[1]);
-	    
+
 	    // Adiciona a nova entrada
 	    proposicoes.add(this.saida);
+
+	    return true;
 	}
+
+	return false;
     }
 
 }

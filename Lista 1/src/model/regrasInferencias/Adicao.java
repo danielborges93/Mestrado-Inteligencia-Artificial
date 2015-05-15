@@ -9,7 +9,7 @@ import java.util.List;
 public class Adicao extends Regra {
 
     @Override
-    public void usar(List<String> proposicoes) {
+    public boolean usar(List<String> proposicoes) {
 	throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -13,10 +13,11 @@ public class Absorcao extends Regra {
     public Absorcao() {
 	this.entrada1 = "^([A-Z])>([A-Z])$";
 	this.saida = "$1>($1^$2)";
+	this.nome = "Absorção";
     }
     
     @Override
-    public void usar(List<String> proposicoes) {
+    public boolean usar(List<String> proposicoes) {
 	
 	// posição da proposição
 	int posicao = -1;
@@ -42,7 +43,6 @@ public class Absorcao extends Regra {
 	// Verifica se achou algo
 	if (posicao > -1) {
 	    // Se sim...
-	    System.out.println("Utilizada a absorção com " + prop);
 	    
 	    // Remove a entrada da lista
 	    proposicoes.remove(prop);
@@ -53,8 +53,11 @@ public class Absorcao extends Regra {
 	    
 	    prop = matcher.replaceAll(this.saida);
 	    proposicoes.add(prop);
+	    
+	    return true;
 	}
 	
+	return false;
     }
     
 }

@@ -10,10 +10,11 @@ public class Conjuncao extends Regra {
 
     public Conjuncao() {
 	this.entrada1 = "^([A-Z])$";
+	this.nome = "Conjunção";
     }
 
     @Override
-    public void usar(List<String> proposicoes) {
+    public boolean usar(List<String> proposicoes) {
 
 	// Contador
 	int count = 0;
@@ -38,20 +39,21 @@ public class Conjuncao extends Regra {
 
 	// Se tiverem as duas entradas
 	if (count == 2) {
-	    
-	    System.out.println("Utilizada a conjunção com " + entradas[0] + " e " + entradas[1]);
-	    
+
 	    // Remover as duas proposições da lista
 	    proposicoes.remove(entradas[0]);
 	    proposicoes.remove(entradas[1]);
-	    
+
 	    // Cria a nova proposição
 	    String novaProposicao = entradas[0] + "^" + entradas[1];
-	    
+
 	    // Adiciona na lista de proposições
 	    proposicoes.add(novaProposicao);
+
+	    return true;
 	}
 
+	return false;
     }
 
 }
