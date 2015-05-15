@@ -2,7 +2,7 @@ package model.equivalencia;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import model.No;
+import model.questao1.No;
 
 /**
  *

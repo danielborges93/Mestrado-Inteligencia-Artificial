@@ -1,4 +1,4 @@
-package model;
+package model.questao1;
 
 import baseDeDados.EquivalenciasLogicas;
 import java.lang.reflect.Array;

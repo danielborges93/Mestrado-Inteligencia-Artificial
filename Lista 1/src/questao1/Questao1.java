@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import model.Expressao;
-import model.No;
+import model.questao1.No;
 
 /**
  * Resolução da questão 1:<br/>

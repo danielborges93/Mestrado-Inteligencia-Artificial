@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import model.Expressao;
-import model.No;
+import model.questao1.No;
 import utils.Leitor;
 
 /**

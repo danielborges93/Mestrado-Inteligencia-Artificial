@@ -14,6 +14,7 @@ import model.regrasInferencias.Regra;
 import model.regrasInferencias.SilogismoDisjuntivo;
 import model.regrasInferencias.SilogismoHipotetico;
 import model.regrasInferencias.Simplificacao;
+import utils.Leitor;
 
 /**
  *
@@ -25,7 +26,7 @@ public class Questao3 {
      * Lista de proposições.
      */
     private final List<String> proposicoes;
-    
+
     /**
      * Lista de regras de inferência.
      */
@@ -37,39 +38,38 @@ public class Questao3 {
     public Questao3() {
 	this.proposicoes = new ArrayList<>();
 	this.regras = new ArrayList<>();
-	
+
 	Regra regra;
-	
+
 	// Adicionar as regras
 	regra = new Absorcao();
 	this.regras.add(regra);
-	
-	regra = new Adicao();
-	this.regras.add(regra);
-	
+
+//	regra = new Adicao();
+//	this.regras.add(regra);
 	regra = new Conjuncao();
 	this.regras.add(regra);
-	
+
 	regra = new Construtivo();
 	this.regras.add(regra);
-	
+
 	regra = new Destrutivo();
 	this.regras.add(regra);
-	
+
 	regra = new ModusPonens();
 	this.regras.add(regra);
-	
+
 	regra = new ModusTollens();
 	this.regras.add(regra);
-	
+
 	regra = new SilogismoDisjuntivo();
 	this.regras.add(regra);
-	
+
 	regra = new SilogismoHipotetico();
 	this.regras.add(regra);
-	
-	regra = new Simplificacao();
-	this.regras.add(regra);
+
+//	regra = new Simplificacao();
+//	this.regras.add(regra);
     }
 
     /**
@@ -85,22 +85,37 @@ public class Questao3 {
 	String[] proposicoesArr = proposicoesString.split(", ");
 	this.proposicoes.addAll(Arrays.asList(proposicoesArr));
 
+	// Imprimir a situação inicial
+	System.out.println();
+
+	// Imprimir o que tem...
+	for (String prop : this.proposicoes) {
+	    System.out.println(prop);
+	}
+	System.out.println("-------------");
+	System.out.println(consequenciaStr);
+	System.out.println();
+
 	// Enquanto o tamanho da lista de proposições for maior que 1...
 	while (this.proposicoes.size() > 1) {
-	    
+
 	    // Utilizar as regras
-	    for(Regra regra : this.regras) {
+	    for (Regra regra : this.regras) {
 		regra.usar(this.proposicoes);
 	    }
-	    
+
+	    System.out.println();
+
 	    // Imprimir o que tem...
-	    for(String prop : this.proposicoes) {
+	    for (String prop : this.proposicoes) {
 		System.out.println(prop);
 	    }
 	    System.out.println("-------------");
 	    System.out.println(consequenciaStr);
 	    System.out.println();
 	    
+	    Leitor.lerLinha();
+
 	}
 
     }
