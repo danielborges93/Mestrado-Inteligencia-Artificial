@@ -51,28 +51,31 @@ public class SilogismoHipotetico extends Regra {
 
 	    // Ver se existe alguma entrada compatível
 	    for (String proposicao2 : entradasPossiveis) {
-		// Pegar o padrão
-		Pattern pattern2 = Pattern.compile(this.entrada2);
-		Matcher matcher2 = pattern2.matcher(proposicao2);
+		// Só faz algo se as proposições forem diferentes
+		if (!proposicao1.equals(proposicao2)) {
+		    // Pegar o padrão
+		    Pattern pattern2 = Pattern.compile(this.entrada2);
+		    Matcher matcher2 = pattern2.matcher(proposicao2);
 
-		// Se encontrar...
-		if (matcher2.find()) {
-		    // Recupera as duas proposições para a entrada
-		    input[0] = proposicao1;
-		    input[1] = proposicao2;
-		    
-		    // Cria a saída
-		    this.saida = matcher.group(1) + ">" + matcher2.group(1);
+		    // Se encontrar...
+		    if (matcher2.find()) {
+			// Recupera as duas proposições para a entrada
+			input[0] = proposicao1;
+			input[1] = proposicao2;
 
-		    // Sai do for
-		    break forPrincipal;
+			// Cria a saída
+			this.saida = matcher.group(1) + ">" + matcher2.group(1);
+
+			// Sai do for
+			break forPrincipal;
+		    }
 		}
 	    }
 	}
 
 	// Se existem as duas entradas...
 	if (input[0] != null && input[1] != null) {
-	    
+
 	    // Remove as duas entradas
 	    proposicoes.remove(input[0]);
 	    proposicoes.remove(input[1]);

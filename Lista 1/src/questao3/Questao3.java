@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import model.questao3.No;
-import model.regrasInferencias.Regra;
-import utils.Leitor;
-import utils.Pilha;
 
 /**
  *

@@ -1,6 +1,7 @@
 package model.questao3;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import model.regrasInferencias.Regra;
@@ -40,6 +41,9 @@ public class No {
     public No(List<String> proposicoes, String consequencia) {
 	this.proposicoes = proposicoes;
 	this.consequencia = consequencia;
+	
+	// Ordenar as proposições
+	Collections.sort(this.proposicoes);
     }
 
     /**
