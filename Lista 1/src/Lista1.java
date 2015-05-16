@@ -1,5 +1,6 @@
 
 import questao1.Questao1;
+import questao2.Questao2;
 import questao3.Questao3;
 import utils.Leitor;
 
@@ -38,6 +39,21 @@ public class Lista1 {
 	System.out.println("");
 	Questao3 questao3 = new Questao3();
 	questao3.exec(proposicoesString, consequenciaStr);
+	
+	System.out.println("");
+	System.out.println("Execução da segunda questão...");
+	System.out.println("");
+	Questao2 questao2 = new Questao2();
+	String[] result = questao2.exec();
+	
+	System.out.println("");
+	System.out.println("resultado do mapeamento:");
+	System.out.println("proposições: " + result[0]);
+	System.out.println("consequência: " + result[1]);
+	System.out.println("");
+	
+	// Jogar na primeira questão
+	questao1.exec(result[0], result[1]);
 	
 //        
 //        String str = "Av(B^C)";
