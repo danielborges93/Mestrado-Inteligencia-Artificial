@@ -1,12 +1,12 @@
 package questao3;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import model.questao3.No;
 import model.regrasInferencias.Absorcao;
+import model.regrasInferencias.Adicao;
 import model.regrasInferencias.Conjuncao;
 import model.regrasInferencias.Construtivo;
 import model.regrasInferencias.Destrutivo;
@@ -15,7 +15,8 @@ import model.regrasInferencias.ModusTollens;
 import model.regrasInferencias.Regra;
 import model.regrasInferencias.SilogismoDisjuntivo;
 import model.regrasInferencias.SilogismoHipotetico;
-import utils.Leitor;
+import model.regrasInferencias.Simplificacao1;
+import model.regrasInferencias.Simplificacao2;
 
 /**
  *
@@ -60,8 +61,9 @@ public class Busca {
 	regra = new Absorcao();
 	this.regras.add(regra);
 
-//	regra = new Adicao();
-//	this.regras.add(regra);
+	regra = new Adicao();
+	this.regras.add(regra);
+        
 	regra = new Conjuncao();
 	this.regras.add(regra);
 
@@ -83,8 +85,11 @@ public class Busca {
 	regra = new SilogismoHipotetico();
 	this.regras.add(regra);
 
-//	regra = new Simplificacao();
-//	this.regras.add(regra);
+	regra = new Simplificacao1();
+	this.regras.add(regra);
+
+	regra = new Simplificacao2();
+	this.regras.add(regra);
     }
 
     /**
