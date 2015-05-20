@@ -53,7 +53,12 @@ public class Lista1 {
 	System.out.println("");
 	
 	// Jogar na primeira questão
+        questao1 = new Questao1();
 	questao1.exec(result[0], result[1]);
+        
+        // Jogar na terceira questão
+        questao3 = new Questao3();
+        questao3.exec(result[0], result[1]);
 	
 //        
 //        String str = "Av(B^C)";
