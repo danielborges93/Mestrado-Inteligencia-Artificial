@@ -4,7 +4,7 @@
 - [x] Implemente um verificador de consequência lógica utilizando os dois teoremas vistos em sala de aula, considerando:
   - [x] Use a tabela verdade
   - [x] Sem o uso da tabela verdade
-- [ ] Incremente a questão **1** aceitando uma entrada em linguagem natural (português), mapeando para a linguagem da lógica proposicional para verificar se um dado argumento é válido.
+- [x] Incremente a questão **1** aceitando uma entrada em linguagem natural (português), mapeando para a linguagem da lógica proposicional para verificar se um dado argumento é válido.
 - [x] Utilizar:
   * Modus Ponens;
   * Modus Tolens;
