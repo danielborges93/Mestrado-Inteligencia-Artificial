@@ -203,6 +203,43 @@ public class Expressao {
     }
 
     /**
+     * Função que converte uma expressão da forma posfixa para a infixa.
+     *
+     * @param posfixa Expressão na forma posfixa.
+     * @return Retorna uma <code>String</code> que representa a expressão na
+     * forma infixa.
+     */
+    public static String posfixaParaInfixa(String posfixa) {
+
+	// Pilha para guardar as expressões
+	Pilha<String> pilha = new Pilha<>();
+
+	// Percorrer toda a expressão posfixa
+	for (char c : posfixa.toCharArray()) {
+	    // Se for uma letra de A a Z, e se for diferente de 'v'...
+	    if (Character.isAlphabetic(c) && c != 'v') {
+		// ...empilha o caractere
+		pilha.empilha("" + c);
+	    } // Se não for é porque é um operador
+	    else if (c == '¬') { // Primeiro verifica se é uma negação
+		// Desempilha o operando e empilha a expressão infixa
+		String operando = pilha.desempilha();
+		pilha.empilha("¬" + operando);
+	    } else { // Entra aqui se for qualquer outro operador
+		// Desempilha os dois operandos
+		String operando2 = pilha.desempilha();
+		String operando1 = pilha.desempilha();
+		
+		// Empilha a expressão infixa
+		String infixa = "(" + operando1 + c + operando2 + ")";
+		pilha.empilha(infixa);
+	    }
+	}
+
+	return pilha.desempilha();
+    }
+
+    /**
      * Utilizado para testar...
      *
      * @param args
@@ -231,6 +268,8 @@ public class Expressao {
 	System.out.println(in3 + " = " + pos3);
 	System.out.println(in4 + " = " + pos4);
 	System.out.println(in5 + " = " + pos5);
+	
+	System.out.println(in2 + " = " + pos2 + " = " + Expressao.posfixaParaInfixa(pos2));
 
 //	Map<Character, Boolean> valores = new HashMap<>();
 //	valores.put('A', true);
