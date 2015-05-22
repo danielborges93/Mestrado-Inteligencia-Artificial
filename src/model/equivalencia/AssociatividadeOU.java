@@ -17,6 +17,8 @@ public class AssociatividadeOU extends Equivalencia {
     private final String substituicaoPosfixa2;
 
     public AssociatividadeOU() {
+	nome = "Associatividade de v";
+	
 	padrao = "[(]([A-Z])v([A-Z])[)]v([A-Z])";
 	substituicao = "$1v($2v$3)";
 	

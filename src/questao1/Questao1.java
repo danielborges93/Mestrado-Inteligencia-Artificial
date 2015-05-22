@@ -156,6 +156,37 @@ public class Questao1 {
 
 	// Imprimir a tabela verdade
 	imprimirTabelaVerdade(tabelaVerdade, operandosList, proposicoesList, consequenciaStr, ("¬(" + consequenciaStr + ")"));
+
+	// Dizer se é consequência lógica...
+	boolean peloTeorema1 = true;
+	boolean peloTeorema2 = true;
+
+	// Percorrer todas as linhas da tabela verdade e verificar a coluna do teorema 1 e do teorema 2
+	for (boolean[] linha : tabelaVerdade) {
+	    // Valor do teorema 1 e do teorema 2 na tabela
+	    boolean teorema1Resolvido = linha[quantColunas - 3];
+	    boolean teorema2Resolvido = linha[quantColunas - 1];
+
+	    // Se o valor resolvido do teorema 1 for falso...
+	    if (teorema1Resolvido == false) {
+		// ...quer dizer que pelo teorema 1 não é consequência lógica
+		peloTeorema1 = false;
+	    }
+
+	    // Se o valor resolvido do teorema 2 for falso...
+	    if (teorema2Resolvido == true) {
+		// ...quer dizer que pelo teorema 2 não é consequência lógica
+		peloTeorema2 = false;
+	    }
+	}
+
+	// Imprimir a conclusão retirada da tabela verdade
+	String nao = peloTeorema1 ? " " : " não ";
+	System.out.println("De acordo coma a tabela verdade, pelo teorema 1," + nao + "é consequência lógica.");
+
+	nao = peloTeorema2 ? " " : " não ";
+	System.out.println("De acordo coma a tabela verdade, pelo teorema 2," + nao + "é consequência lógica.");
+
 	System.out.println();
     }
 
@@ -198,6 +229,8 @@ public class Questao1 {
      */
     private void imprimirTabelaVerdade(boolean[][] tabelaVerdade, List<Character> operandosList, List<Expressao> proposicoes, String consequencia1, String consequencia2) {
 
+	System.out.println();
+	System.out.println("Tabela verdade:");
 	for (int i = 0; i < tabelaVerdade[0].length; i++) {
 	    System.out.print("++++++++");
 	}
@@ -267,11 +300,9 @@ public class Questao1 {
 	// Começar a busca do teorema 1...
 	Busca buscaTeorema1 = new Busca(teorema1);
 	No no = buscaTeorema1.buscar();
-	
-	System.out.println("Caminho para encontrar no teorema 1:");
-	imprimirCaminho(no);
-	System.out.println();
-	
+
+	conclusaoTeorema(1, no);
+
 	// Formar a expressão do teorema 2
 	teoremaBuilder = new StringBuilder();
 
@@ -288,8 +319,46 @@ public class Questao1 {
 	Busca buscaTeorema2 = new Busca(teorema2);
 	No no2 = buscaTeorema2.buscar();
 
-	System.out.println("Caminho para encontrar no teorema 2:");
-	imprimirCaminho(no2);
+	conclusaoTeorema(2, no2);
+    }
+
+    /**
+     * Imprime a conclusão tirada atravé da utilização das equivalências.
+     *
+     * @param teorema Teorema a ser avaliado.
+     * @param no Nó final.
+     */
+    private void conclusaoTeorema(int teorema, No no) {
+	// Se o nó final não for nulo, quer dizer que conseguiu chegar em
+	// uma tautologia ou em uma contradição
+	if (no != null) {
+
+	    System.out.print("Utilizando equivalências com o teorema " + teorema + ", ");
+
+	    // Se for o teorema 1
+	    if (teorema == 1) {
+		// Se for uma contradição
+		if (no.getExpressao().equals("f")) {
+		    System.out.print("não ");
+		}
+	    } // Se for o teorema 2
+	    else {
+		// Se for uma tautologia
+		if (no.getExpressao().equals("t")) {
+		    System.out.print("não ");
+		}
+	    }
+
+	    // Se for uma contradição...
+	    System.out.println("é uma consequência lógica.");
+
+	    System.out.println("Caminho até chegar a esta conclusão:");
+	    imprimirCaminho(no);
+
+	} else {
+	    System.out.println("Não pôde chegar a uma conclusão...");
+	}
+
 	System.out.println();
     }
 
@@ -303,9 +372,19 @@ public class Questao1 {
 	// como parámetro
 	if (no != null) {
 	    imprimirCaminho(no.getPai());
-	    System.out.println(no);
-	}
+
+	    String expressaoPosfixa = no.getExpressao();
+	    String expressaoInfixa = Expressao.posfixaParaInfixa(expressaoPosfixa);
+
+	    System.out.print(expressaoInfixa);
 	    
+	    if(no.getEquivalenciaUtilizada() != null) {
+		System.out.print("\t\t (" + no.getEquivalenciaUtilizada() + ")");
+	    }
+	    
+	    System.out.println();
+	}
+
     }
 
 }

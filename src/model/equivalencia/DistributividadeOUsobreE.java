@@ -23,6 +23,8 @@ public class DistributividadeOUsobreE extends Equivalencia {
     private final String substituicaoPosfixa3;
     
     public DistributividadeOUsobreE() {
+	nome = "Distributividade de v sobre ^";
+	
 	padrao = "([A-Z])v[(]([A-Z])\\^([A-Z])[)]";
 	substituicao = "($1v$2)^($1v$3)";
 	

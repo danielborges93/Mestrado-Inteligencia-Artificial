@@ -10,6 +10,10 @@ import model.questao1.No;
  */
 public class SimplificacaoImplica extends Contraposicao {
 
+    public SimplificacaoImplica() {
+	nome = "Simplificação do >";
+    }
+
     @Override
     public String matches(No no) {
 

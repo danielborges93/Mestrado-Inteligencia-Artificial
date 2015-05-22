@@ -29,6 +29,11 @@ public class No {
     private List<No> filhos;
 
     /**
+     * Equivalência utilizada para gerar o nó.
+     */
+    private String equivalenciaUtilizada;
+
+    /**
      * Construtor.
      *
      * @param expressaoStr
@@ -60,14 +65,17 @@ public class No {
 
 		// Recupera as possibilidades
 		String matches[] = match.split(";");
-		
+
 		// Cria os nós filhos
 		for (String m : matches) {
 		    // Às vezes vem vazio, se vier, pula...
-		    if(m.equals("")) continue;
-		    
+		    if (m.equals("")) {
+			continue;
+		    }
+
 		    No filho = new No(m);
 		    filho.pai = this;
+		    filho.equivalenciaUtilizada = equivalencia.getNome();
 
 		    // Adiciona à lista de filhos
 		    filhosTemp.add(filho);
@@ -101,10 +109,21 @@ public class No {
 
     /**
      * Recupera o pai do nó.
+     *
      * @return Retorna o nó pai.
      */
     public No getPai() {
 	return pai;
+    }
+
+    /**
+     * Recupera a equivalência utilizada para gerar o nó.
+     *
+     * @return Retorna uma <code>String</code> que diz qual equivalência foi
+     * utilizada pra gerar o nó.
+     */
+    public String getEquivalenciaUtilizada() {
+	return equivalenciaUtilizada;
     }
 
     @Override

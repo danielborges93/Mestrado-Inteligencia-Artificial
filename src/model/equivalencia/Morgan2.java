@@ -7,6 +7,8 @@ package model.equivalencia;
 public class Morgan2 extends Equivalencia {
 
     public Morgan2() {
+	nome = "De Morgan";
+	
 	padrao = "¬[(]([A-Z])v([A-Z])[)]";
 	substituicao = "(¬$1v¬$2)";
 	

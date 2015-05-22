@@ -7,6 +7,8 @@ package model.equivalencia;
 public class ComutatividadeOU extends Equivalencia {
 
     public ComutatividadeOU() {
+	nome = "Comutatividade de v";
+	
 	padrao = "[(]([A-Z])v([A-Z])[)]";
 	substituicao = "($2v$1)";
 	

@@ -1,9 +1,5 @@
 package model.equivalencia;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import model.questao1.No;
-
 /**
  *
  * @author danielborges93
@@ -19,6 +15,8 @@ public class EliminacaoNegacaoDupla extends Equivalencia {
      * Construtor.
      */
     public EliminacaoNegacaoDupla() {
+	nome = "Eliminação da negação dupla";
+	
 	padrao = "¬[(]¬([A-Z])[)]";
 	padrao2 = "¬¬([A-Z])";
 	substituicao = "$1";

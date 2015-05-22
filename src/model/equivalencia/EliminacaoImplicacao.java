@@ -7,6 +7,8 @@ package model.equivalencia;
 public class EliminacaoImplicacao extends Equivalencia {
 
     public EliminacaoImplicacao() {
+	nome = "Eliminação da implicação";
+	
 	padrao = "([A-Z])>([A-Z])";
 	substituicao = "¬$1v$2";
 	

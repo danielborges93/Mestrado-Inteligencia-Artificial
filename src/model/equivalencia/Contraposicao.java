@@ -7,6 +7,8 @@ package model.equivalencia;
 public class Contraposicao extends Equivalencia {
 
     public Contraposicao() {
+	nome = "Contraposição";
+	
 	padrao = "([A-Z])>([A-Z])";
 	substituicao = "$1^(¬$2>¬$1)";
 	

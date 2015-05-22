@@ -41,6 +41,7 @@ public class Questao3 {
 	No no = busca.buscar();
 	
 	// Imprimir o caminho percorrido
+	System.out.println("Utilizando regras de inferência:");
 	imprimirCaminho(no);
 
     }

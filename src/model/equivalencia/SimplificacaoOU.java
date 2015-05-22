@@ -10,6 +10,10 @@ import model.questao1.No;
  */
 public class SimplificacaoOU extends ComutatividadeOU {
 
+    public SimplificacaoOU() {
+	nome = "Simplificação do v";
+    }
+
     @Override
     public String matches(No no) {
 

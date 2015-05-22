@@ -17,6 +17,8 @@ public class AssociatividadeE extends Equivalencia {
     private final String substituicaoPosfixa2;
 
     public AssociatividadeE() {
+	nome = "Associatividade de ^";
+	
 	padrao = "[(]([A-Z])\\^([A-Z])[)]\\^([A-Z])";
 	substituicao = "$1^($2^$3)";
 	
