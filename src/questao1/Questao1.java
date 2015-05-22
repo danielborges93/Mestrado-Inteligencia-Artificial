@@ -356,7 +356,7 @@ public class Questao1 {
 	    imprimirCaminho(no);
 
 	} else {
-	    System.out.println("Não pôde chegar a uma conclusão...");
+	    System.out.println("Não pôde chegar a uma conclusão com o teorema " + teorema + "...");
 	}
 
 	System.out.println();
@@ -373,13 +373,10 @@ public class Questao1 {
 	if (no != null) {
 	    imprimirCaminho(no.getPai());
 
-	    String expressaoPosfixa = no.getExpressao();
-	    String expressaoInfixa = Expressao.posfixaParaInfixa(expressaoPosfixa);
-
-	    System.out.print(expressaoInfixa);
+	    System.out.print(no);
 	    
 	    if(no.getEquivalenciaUtilizada() != null) {
-		System.out.print("\t\t (" + no.getEquivalenciaUtilizada() + ")");
+		System.out.print("\t\t [" + no.getEquivalenciaUtilizada() + "]");
 	    }
 	    
 	    System.out.println();

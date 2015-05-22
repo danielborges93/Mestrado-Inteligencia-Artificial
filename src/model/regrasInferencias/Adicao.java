@@ -10,6 +10,10 @@ import java.util.Set;
  */
 public class Adicao extends Regra {
 
+    public Adicao() {
+	this.nome = "Adição";
+    }
+
     @Override
     public boolean usar(List<String> proposicoes) {
 	

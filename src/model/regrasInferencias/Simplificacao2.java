@@ -15,6 +15,7 @@ public class Simplificacao2 extends Regra {
      */
     public Simplificacao2() {
         this.entrada1 = "^(¬?[A-Z])v(¬?[A-Z])$";
+	this.nome = "Simplificação";
     }
     
     @Override

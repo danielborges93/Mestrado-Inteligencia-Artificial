@@ -229,14 +229,20 @@ public class Expressao {
 		// Desempilha os dois operandos
 		String operando2 = pilha.desempilha();
 		String operando1 = pilha.desempilha();
-		
+
 		// Empilha a expressão infixa
 		String infixa = "(" + operando1 + c + operando2 + ")";
 		pilha.empilha(infixa);
 	    }
 	}
 
-	return pilha.desempilha();
+	String infixa = pilha.desempilha();
+
+	if (infixa.length() > 1) {
+	    return infixa.substring(1, infixa.length() - 1);
+	} else {
+	    return infixa;
+	}
     }
 
     /**
@@ -245,11 +251,11 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "Av(B^C)";
-	String in2 = "(B^C)vA";
-	String in3 = "(AvB)^(AvC)";
-	String in4 = "(B^C)vAvZ";
-	String in5 = "((AvB)^(AvC))vZ";
+	String in1 = "¬((¬PvS)^((¬S^P)v(U^P)))vU";
+	String in2 = "";
+	String in3 = "";
+	String in4 = "";
+	String in5 = "";
 
 	Expressao e1 = new Expressao(in1);
 	Expressao e2 = new Expressao(in2);
@@ -268,7 +274,7 @@ public class Expressao {
 	System.out.println(in3 + " = " + pos3);
 	System.out.println(in4 + " = " + pos4);
 	System.out.println(in5 + " = " + pos5);
-	
+
 	System.out.println(in2 + " = " + pos2 + " = " + Expressao.posfixaParaInfixa(pos2));
 
 //	Map<Character, Boolean> valores = new HashMap<>();

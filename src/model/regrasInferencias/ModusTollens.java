@@ -12,7 +12,7 @@ public class ModusTollens extends Regra {
 
     public ModusTollens() {
 	this.entrada1 = "^([A-Z])>([A-Z])$";
-	this.nome = "Medus Tollens";
+	this.nome = "Modus Tollens";
     }
 
     @Override

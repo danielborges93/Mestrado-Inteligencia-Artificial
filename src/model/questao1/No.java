@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import model.Expressao;
 import model.equivalencia.Equivalencia;
 
 /**
@@ -128,7 +129,7 @@ public class No {
 
     @Override
     public String toString() {
-	return this.expressao;
+	return Expressao.posfixaParaInfixa(expressao);
     }
 
 }
