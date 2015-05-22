@@ -15,6 +15,12 @@ public class DistributividadeOUsobreE extends Equivalencia {
      */
     private final String padraoPosfixa2;
     private final String substituicaoPosfixa2;
+
+    /**
+     * Se for di jeito: (B^C)vAvZ
+     */
+    private final String padraoPosfixa3;
+    private final String substituicaoPosfixa3;
     
     public DistributividadeOUsobreE() {
 	padrao = "([A-Z])v[(]([A-Z])\\^([A-Z])[)]";
@@ -24,7 +30,10 @@ public class DistributividadeOUsobreE extends Equivalencia {
 	substituicaoPosfixa = "$1$2v$1$3v^";
 	
 	padraoPosfixa2 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)\\^(t|f|[A-Z]¬?)v";
-	substituicaoPosfixa2 = "$1$3v$2$3v^";
+	substituicaoPosfixa2 = "$3$1v$3$2v^";
+	
+	padraoPosfixa3 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)\\^(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)vv";
+	substituicaoPosfixa3 = "$3$1v$3$2v^$4v";
     }
     
     @Override
@@ -35,7 +44,7 @@ public class DistributividadeOUsobreE extends Equivalencia {
 	Matcher matcher;
 	String result = "";
 	
-	// Encontrar os padrões A^(BvC)
+	// Encontrar os padrões Av(B^C)
 	pattern = Pattern.compile(padraoPosfixa);
 	matcher = pattern.matcher(no.getExpressao());
 	
@@ -46,13 +55,23 @@ public class DistributividadeOUsobreE extends Equivalencia {
 //	    System.out.println("realizou alterações em " + getClass());
 	}
 	
-	// Encontrar os padrões (BvC)^A
+	// Encontrar os padrões (B^C)vA
 	pattern = Pattern.compile(padraoPosfixa2);
 	matcher = pattern.matcher(no.getExpressao());
 	
 	// Se houver ocorrências...
 	if(matcher.find()) {
 	    result += ";" + matcher.replaceAll(substituicaoPosfixa2);
+//	    System.out.println("realizou alterações em " + getClass());
+	}
+	
+	// Encontrar os padrões (B^C)vAvZ
+	pattern = Pattern.compile(padraoPosfixa3);
+	matcher = pattern.matcher(no.getExpressao());
+	
+	// Se houver ocorrências...
+	if(matcher.find()) {
+	    result += ";" + matcher.replaceAll(substituicaoPosfixa3);
 //	    System.out.println("realizou alterações em " + getClass());
 	}
 	

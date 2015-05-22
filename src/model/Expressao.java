@@ -40,9 +40,8 @@ public class Expressao {
      */
     public Expressao(String infixa) {
 
-	    this.infixa = infixa;
-	    this.posfixa = this.converter();
-	
+	this.infixa = infixa;
+	this.posfixa = this.converter();
 
     }
 
@@ -209,17 +208,29 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "((AvB)vC)";
-	String in2 = "(Av(BvC))";
+	String in1 = "Av(B^C)";
+	String in2 = "(B^C)vA";
+	String in3 = "(AvB)^(AvC)";
+	String in4 = "(B^C)vAvZ";
+	String in5 = "((AvB)^(AvC))vZ";
 
 	Expressao e1 = new Expressao(in1);
 	Expressao e2 = new Expressao(in2);
+	Expressao e3 = new Expressao(in3);
+	Expressao e4 = new Expressao(in4);
+	Expressao e5 = new Expressao(in5);
 
 	String pos1 = e1.converter();
 	String pos2 = e2.converter();
+	String pos3 = e3.converter();
+	String pos4 = e4.converter();
+	String pos5 = e5.converter();
 
-	System.out.println(pos1);
-	System.out.println(pos2);
+	System.out.println(in1 + " = " + pos1);
+	System.out.println(in2 + " = " + pos2);
+	System.out.println(in3 + " = " + pos3);
+	System.out.println(in4 + " = " + pos4);
+	System.out.println(in5 + " = " + pos5);
 
 //	Map<Character, Boolean> valores = new HashMap<>();
 //	valores.put('A', true);
