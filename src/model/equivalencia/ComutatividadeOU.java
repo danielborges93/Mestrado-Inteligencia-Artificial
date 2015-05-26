@@ -25,25 +25,25 @@ public class ComutatividadeOU extends Equivalencia {
      */
     private final String padraoPosfixa4;
     private final String substituicaoPosfixa4;
-    
+
     public ComutatividadeOU() {
 	nome = "Comutatividade de v";
-	
+
 //	padrao = "[(]([A-Z])v([A-Z])[)]";
 //	substituicao = "($2v$1)";
 	
 	padraoPosfixa = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)v";
 	substituicaoPosfixa = "$2$1v";
-	
+
 	padraoPosfixa2 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)([v|\\^|>])(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)([v|\\^|>])v";
 	substituicaoPosfixa2 = "$4$5$6$1$2$3v";
-	
-	padraoPosfixa3 = "([A-Z])([A-Z])(v|\\^|>)([A-Z])v";
+
+	padraoPosfixa3 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)(v|\\^|>)(t|f|[A-Z]¬?)v";
 	substituicaoPosfixa3 = "$4$1$2$3v";
-	
-	padraoPosfixa4 = "([A-Z])([A-Z])([A-Z])(v|\\^|>)v";
+
+	padraoPosfixa4 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)(v|\\^|>)v";
 	substituicaoPosfixa4 = "$2$3$4$1v";
-	
+
 	this.padroesPosfixos = new HashMap<>();
 	this.padroesPosfixos.put(padraoPosfixa, substituicaoPosfixa);
 	this.padroesPosfixos.put(padraoPosfixa2, substituicaoPosfixa2);
@@ -51,22 +51,4 @@ public class ComutatividadeOU extends Equivalencia {
 	this.padroesPosfixos.put(padraoPosfixa4, substituicaoPosfixa4);
     }
 
-//    @Override
-//    public String matches(No no) {
-//	// Executar o procedimento padrão
-//	String result = super.matches(no);
-//	
-//	// Detectar o segundo padrão
-//	Pattern pattern = Pattern.compile(padraoPosfixa2);
-//	Matcher matcher = pattern.matcher(no.getExpressao());
-//	
-//	// Se encontrar...
-//	if(matcher.find()) {
-//	    // ...realiza as substituições
-//	    result += ";" + matcher.replaceAll(substituicaoPosfixa2);
-//	}
-//	
-//	return result;
-//    }
-    
 }

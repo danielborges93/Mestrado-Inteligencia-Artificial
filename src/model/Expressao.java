@@ -251,8 +251,8 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "A^(B>C)";
-	String in2 = "(B>C)^A";
+	String in1 = "(A>B)^((C>D)^(E>F))";
+	String in2 = "((A>B)^(C>D))^(E>F)";
 
 	Expressao e1 = new Expressao(in1);
 	Expressao e2 = new Expressao(in2);
@@ -260,8 +260,8 @@ public class Expressao {
 	String pos1 = e1.converter();
 	String pos2 = e2.converter();
 	
-	System.out.println("pos1 = " + pos1);
-	System.out.println("pos2 = " + pos2);
+	System.out.println(pos1);
+	System.out.println(pos2);
 
 //	Map<Character, Boolean> valores = new HashMap<>();
 //	valores.put('A', true);
