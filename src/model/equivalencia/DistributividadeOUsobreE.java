@@ -1,5 +1,6 @@
 package model.equivalencia;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.questao1.No;
@@ -25,8 +26,8 @@ public class DistributividadeOUsobreE extends Equivalencia {
     public DistributividadeOUsobreE() {
 	nome = "Distributividade de v sobre ^";
 	
-	padrao = "([A-Z])v[(]([A-Z])\\^([A-Z])[)]";
-	substituicao = "($1v$2)^($1v$3)";
+//	padrao = "([A-Z])v[(]([A-Z])\\^([A-Z])[)]";
+//	substituicao = "($1v$2)^($1v$3)";
 	
 	padraoPosfixa = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)\\^v";
 	substituicaoPosfixa = "$1$2v$1$3v^";
@@ -36,48 +37,53 @@ public class DistributividadeOUsobreE extends Equivalencia {
 	
 	padraoPosfixa3 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)\\^(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)vv";
 	substituicaoPosfixa3 = "$3$1v$3$2v^$4v";
+	
+	this.padroesPosfixos = new HashMap<>();
+	this.padroesPosfixos.put(padraoPosfixa, substituicaoPosfixa);
+	this.padroesPosfixos.put(padraoPosfixa2, substituicaoPosfixa2);
+	this.padroesPosfixos.put(padraoPosfixa3, substituicaoPosfixa3);
     }
     
-    @Override
-    public String matches(No no) {
-	
-	// Declarações
-	Pattern pattern;
-	Matcher matcher;
-	String result = "";
-	
-	// Encontrar os padrões Av(B^C)
-	pattern = Pattern.compile(padraoPosfixa);
-	matcher = pattern.matcher(no.getExpressao());
-	
-	// Se houver ocorrências...
-	if(matcher.find()) {
-	    // Substitui todas as ocorrências
-	    result += matcher.replaceAll(substituicaoPosfixa);
-//	    System.out.println("realizou alterações em " + getClass());
-	}
-	
-	// Encontrar os padrões (B^C)vA
-	pattern = Pattern.compile(padraoPosfixa2);
-	matcher = pattern.matcher(no.getExpressao());
-	
-	// Se houver ocorrências...
-	if(matcher.find()) {
-	    result += ";" + matcher.replaceAll(substituicaoPosfixa2);
-//	    System.out.println("realizou alterações em " + getClass());
-	}
-	
-	// Encontrar os padrões (B^C)vAvZ
-	pattern = Pattern.compile(padraoPosfixa3);
-	matcher = pattern.matcher(no.getExpressao());
-	
-	// Se houver ocorrências...
-	if(matcher.find()) {
-	    result += ";" + matcher.replaceAll(substituicaoPosfixa3);
-//	    System.out.println("realizou alterações em " + getClass());
-	}
-	
-	return result;
-    }
+//    @Override
+//    public String matches(No no) {
+//	
+//	// Declarações
+//	Pattern pattern;
+//	Matcher matcher;
+//	String result = "";
+//	
+//	// Encontrar os padrões Av(B^C)
+//	pattern = Pattern.compile(padraoPosfixa);
+//	matcher = pattern.matcher(no.getExpressao());
+//	
+//	// Se houver ocorrências...
+//	if(matcher.find()) {
+//	    // Substitui todas as ocorrências
+//	    result += matcher.replaceAll(substituicaoPosfixa);
+////	    System.out.println("realizou alterações em " + getClass());
+//	}
+//	
+//	// Encontrar os padrões (B^C)vA
+//	pattern = Pattern.compile(padraoPosfixa2);
+//	matcher = pattern.matcher(no.getExpressao());
+//	
+//	// Se houver ocorrências...
+//	if(matcher.find()) {
+//	    result += ";" + matcher.replaceAll(substituicaoPosfixa2);
+////	    System.out.println("realizou alterações em " + getClass());
+//	}
+//	
+//	// Encontrar os padrões (B^C)vAvZ
+//	pattern = Pattern.compile(padraoPosfixa3);
+//	matcher = pattern.matcher(no.getExpressao());
+//	
+//	// Se houver ocorrências...
+//	if(matcher.find()) {
+//	    result += ";" + matcher.replaceAll(substituicaoPosfixa3);
+////	    System.out.println("realizou alterações em " + getClass());
+//	}
+//	
+//	return result;
+//    }
     
 }

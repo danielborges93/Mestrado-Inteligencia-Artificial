@@ -1,5 +1,6 @@
 package model.equivalencia;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.questao1.No;
@@ -11,24 +12,20 @@ import model.questao1.No;
 public abstract class Equivalencia {
 
     /**
-     * Regex do padrão a ser encontrado.
-     */
-    protected String padrao;
-
-    /**
      * Regex do padrão a ser encontrado no formato posfixo.
      */
     protected String padraoPosfixa;
 
     /**
-     * Valor a ser substituído.
-     */
-    protected String substituicao;
-
-    /**
      * Valor a ser substituído no formato posfixo.
      */
     protected String substituicaoPosfixa;
+
+    /**
+     * Map com os padrões no formato posfixos como chave e a sua substituição
+     * como valor.
+     */
+    protected Map<String, String> padroesPosfixos;
 
     /**
      * Nome da equivalência.
@@ -42,22 +39,30 @@ public abstract class Equivalencia {
      * @return Retorna uma <code>String</code> com a expressão alterada.
      */
     public String matches(No no) {
-
-	// Detectar o padrão na expressão
-	Pattern pattern = Pattern.compile(this.padraoPosfixa);
-	Matcher matcher = pattern.matcher(no.getExpressao());
-
-	// Resultado da substituições
-	String result = "";
-
-	// Verificar se há ocorrências do padrão
-	if (matcher.find()) {
-	    // Realizar todas as substituições
-	    result += matcher.replaceAll(this.substituicaoPosfixa);
-//	    System.out.println("realizou alterações em " + getClass());
+	
+	// Construtor para gerar a string final
+	StringBuilder result = new StringBuilder();
+	
+	// Percorrer o map e realizar as substituições
+	for (String padrao : this.padroesPosfixos.keySet()) {
+	    String substituicao = this.padroesPosfixos.get(padrao);
+	    
+	    // Detectar o padrão
+	    Pattern pattern = Pattern.compile(padrao);
+	    Matcher matcher = pattern.matcher(no.getExpressao());
+	    
+	    // Se encontrar ocorrências...
+	    if (matcher.find()) {
+		// ..realiza todas as substituições
+		String replaceAll = matcher.replaceAll(substituicao);
+		
+		// Adiciona na string final
+		result.append(replaceAll);
+		result.append(";");
+	    }
 	}
 
-	return result;
+	return result.toString();
     }
 
     /**

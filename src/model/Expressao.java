@@ -251,31 +251,17 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "¬((¬PvS)^((¬S^P)v(U^P)))vU";
-	String in2 = "";
-	String in3 = "";
-	String in4 = "";
-	String in5 = "";
+	String in1 = "A^(B>C)";
+	String in2 = "(B>C)^A";
 
 	Expressao e1 = new Expressao(in1);
 	Expressao e2 = new Expressao(in2);
-	Expressao e3 = new Expressao(in3);
-	Expressao e4 = new Expressao(in4);
-	Expressao e5 = new Expressao(in5);
 
 	String pos1 = e1.converter();
 	String pos2 = e2.converter();
-	String pos3 = e3.converter();
-	String pos4 = e4.converter();
-	String pos5 = e5.converter();
-
-	System.out.println(in1 + " = " + pos1);
-	System.out.println(in2 + " = " + pos2);
-	System.out.println(in3 + " = " + pos3);
-	System.out.println(in4 + " = " + pos4);
-	System.out.println(in5 + " = " + pos5);
-
-	System.out.println(in2 + " = " + pos2 + " = " + Expressao.posfixaParaInfixa(pos2));
+	
+	System.out.println("pos1 = " + pos1);
+	System.out.println("pos2 = " + pos2);
 
 //	Map<Character, Boolean> valores = new HashMap<>();
 //	valores.put('A', true);

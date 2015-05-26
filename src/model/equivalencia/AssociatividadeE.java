@@ -1,5 +1,6 @@
 package model.equivalencia;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.questao1.No;
@@ -19,46 +20,50 @@ public class AssociatividadeE extends Equivalencia {
     public AssociatividadeE() {
 	nome = "Associatividade de ^";
 	
-	padrao = "[(]([A-Z])\\^([A-Z])[)]\\^([A-Z])";
-	substituicao = "$1^($2^$3)";
+//	padrao = "[(]([A-Z])\\^([A-Z])[)]\\^([A-Z])";
+//	substituicao = "$1^($2^$3)";
 	
 	padraoPosfixa = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)\\^(t|f|[A-Z]¬?)\\^";
 	substituicaoPosfixa = "$1$2$3^^";
 	
 	padraoPosfixa2 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)\\^\\^";
 	substituicaoPosfixa2 = "$1$2^$3^";
+	
+	this.padroesPosfixos = new HashMap<>();
+	this.padroesPosfixos.put(padraoPosfixa, substituicaoPosfixa);
+	this.padroesPosfixos.put(padraoPosfixa2, substituicaoPosfixa2);
     }
     
-    @Override
-    public String matches(No no) {
-	
-	// Declarações
-	Pattern pattern;
-	Matcher matcher;
-	String result = "";
-	
-	// Encontrar os padrões A^(B^C)
-	pattern = Pattern.compile(padraoPosfixa);
-	matcher = pattern.matcher(no.getExpressao());
-	
-	// Se houver ocorrências...
-	if(matcher.find()) {
-	    // Substitui todas as ocorrências
-	    result += matcher.replaceAll(substituicaoPosfixa);
-//	    System.out.println("realizou alterações em " + getClass());
-	}
-	
-	// Encontrar os padrões (A^B)^C
-	pattern = Pattern.compile(padraoPosfixa2);
-	matcher = pattern.matcher(no.getExpressao());
-	
-	// Se houver ocorrências...
-	if(matcher.find()) {
-	    result += ";" + matcher.replaceAll(substituicaoPosfixa2);
-//	    System.out.println("realizou alterações em " + getClass());
-	}
-	
-	return result;
-    }
+//    @Override
+//    public String matches(No no) {
+//	
+//	// Declarações
+//	Pattern pattern;
+//	Matcher matcher;
+//	String result = "";
+//	
+//	// Encontrar os padrões A^(B^C)
+//	pattern = Pattern.compile(padraoPosfixa);
+//	matcher = pattern.matcher(no.getExpressao());
+//	
+//	// Se houver ocorrências...
+//	if(matcher.find()) {
+//	    // Substitui todas as ocorrências
+//	    result += matcher.replaceAll(substituicaoPosfixa);
+////	    System.out.println("realizou alterações em " + getClass());
+//	}
+//	
+//	// Encontrar os padrões (A^B)^C
+//	pattern = Pattern.compile(padraoPosfixa2);
+//	matcher = pattern.matcher(no.getExpressao());
+//	
+//	// Se houver ocorrências...
+//	if(matcher.find()) {
+//	    result += ";" + matcher.replaceAll(substituicaoPosfixa2);
+////	    System.out.println("realizou alterações em " + getClass());
+//	}
+//	
+//	return result;
+//    }
     
 }
