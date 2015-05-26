@@ -50,22 +50,6 @@ public class EquivalenciasLogicas extends ArrayList<Equivalencia>{
 	equivalencia = new SimplificacaoImplica();
 	add(equivalencia);
 
-	// Comutatividade de ^
-	equivalencia = new ComutatividadeE();
-	add(equivalencia);
-
-	// Comutatividade de v
-	equivalencia = new ComutatividadeOU();
-	add(equivalencia);
-
-	// Associatividade de ^
-	equivalencia = new AssociatividadeE();
-	add(equivalencia);
-
-	// Associatividade de v
-	equivalencia = new AssociatividadeOU();
-	add(equivalencia);
-
 	// Eliminação de nageção dupla
 	equivalencia = new EliminacaoNegacaoDupla();
 	add(equivalencia);
@@ -92,6 +76,22 @@ public class EquivalenciasLogicas extends ArrayList<Equivalencia>{
 
 	// Distributividade de v sobre ^
 	equivalencia = new DistributividadeOUsobreE();
+	add(equivalencia);
+
+	// Comutatividade de ^
+	equivalencia = new ComutatividadeE();
+	add(equivalencia);
+
+	// Comutatividade de v
+	equivalencia = new ComutatividadeOU();
+	add(equivalencia);
+
+	// Associatividade de ^
+	equivalencia = new AssociatividadeE();
+	add(equivalencia);
+
+	// Associatividade de v
+	equivalencia = new AssociatividadeOU();
 	add(equivalencia);
     }
 
