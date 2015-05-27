@@ -11,6 +11,16 @@
   * ...
 
 ## Documentação
+### Nameclatura
+Os operadores lógicos foram traduzidos para que o tratamento utilizando linguagem de programação seja mais eficiente e, logicamente, mais fácil. A tradução é mostrada na tabela a seguir:
+
+Nome | Operador original | Tradução
+---- | ----------------- | --------
+E | ^ | ^
+OU | v | v
+IMPLICA | seta | >
+NEGAÇÃO | ¬/~ | ¬
+
 ### Questão 1
 **OBS.:** Todas as operações foram baseadas na notação posfixa, ou polonesa invertida (vide [Wikipedia](http://pt.wikipedia.org/wiki/Nota%C3%A7%C3%A3o_polonesa_inversa)).
 
