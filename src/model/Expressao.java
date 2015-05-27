@@ -262,6 +262,9 @@ public class Expressao {
 	
 	System.out.println(pos1);
 	System.out.println(pos2);
+	
+	System.out.println(posfixaParaInfixa("JG>J¬T>GC>C¬^^^¬Tv"));
+//	System.out.println(posfixaParaInfixa("JG>J¬T>vGC>vC¬^^^¬Tv"));
 
     }
 
