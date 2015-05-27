@@ -11,20 +11,20 @@ public class ComutatividadeE extends Equivalencia {
     /**
      * Com duas variáveis dos dois lados.
      */
-    private final String padraoPosfixa2;
-    private final String substituicaoPosfixa2;
+    protected final String padraoPosfixa2;
+    protected final String substituicaoPosfixa2;
 
     /**
      * Com duas variáveis do lado esquerdo.
      */
-    private final String padraoPosfixa3;
-    private final String substituicaoPosfixa3;
+    protected final String padraoPosfixa3;
+    protected final String substituicaoPosfixa3;
 
     /**
      * Com duas variáveis do lado direito.
      */
-    private final String padraoPosfixa4;
-    private final String substituicaoPosfixa4;
+    protected final String padraoPosfixa4;
+    protected final String substituicaoPosfixa4;
 
     public ComutatividadeE() {
 	nome = "Comutatividade de ^";

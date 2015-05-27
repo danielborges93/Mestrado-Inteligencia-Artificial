@@ -1,9 +1,6 @@
 package model.equivalencia;
 
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import model.questao1.No;
 
 /**
  *
@@ -12,16 +9,22 @@ import model.questao1.No;
 public class DistributividadeEsobreOU extends Equivalencia {
     
     /**
-     * Há duas maneiras de representar: A^(BvC) ou (BvC)^A
+     * Há duas maneiras de representar: A^(BvC) ou (BvC)^A.
      */
     private final String padraoPosfixa2;
     private final String substituicaoPosfixa2;
     
     /**
-     * Se for algo assim: (CvD)^A^B
+     * Se for algo assim: (CvD)^A^B.
      */
     private final String padraoPosfixa3;
     private final String substituicaoPosfixa3;
+    
+    /**
+     * Com todas as partes com duas variáveis.
+     */
+    private final String padraoPosfixa4;
+    private final String substituicaoPosfixa4;
 
     public DistributividadeEsobreOU() {
 	nome = "Distributividade de ^ sobre v";
@@ -38,10 +41,14 @@ public class DistributividadeEsobreOU extends Equivalencia {
 	padraoPosfixa3 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)v(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)\\^\\^";
 	substituicaoPosfixa3 = "$3$1^$3$2^v$4^";
 	
+	padraoPosfixa4 = "";
+	substituicaoPosfixa4 = "";
+	
 	this.padroesPosfixos = new HashMap<>();
 	this.padroesPosfixos.put(padraoPosfixa, substituicaoPosfixa);
 	this.padroesPosfixos.put(padraoPosfixa2, substituicaoPosfixa2);
 	this.padroesPosfixos.put(padraoPosfixa3, substituicaoPosfixa3);
+//	this.padroesPosfixos.put(padraoPosfixa4, substituicaoPosfixa4);
     }
     
 //    @Override

@@ -121,8 +121,8 @@ public class AssociatividadeOU extends Equivalencia {
 	substituicaoPosfixa6 = "$1$2$3$4$5vv";
 
 	padraoPosfixa7 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)([v|\\^|>])"
-		+ "(t|f|[A-Z]¬?)"
-		+ "(t|f|[A-Z]¬?)";
+		+ "(t|f|[A-Z]¬?)v"
+		+ "(t|f|[A-Z]¬?)v";
 	substituicaoPosfixa7 = "$1$2$3$4$5vv";
 
 	padraoPosfixa8 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)vv";
@@ -130,7 +130,7 @@ public class AssociatividadeOU extends Equivalencia {
 	
 	padraoPosfixa9 = "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)([v|\\^|>])"
 		+ "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)([v|\\^|>])"
-		+ "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)([v|\\^|>])";
+		+ "(t|f|[A-Z]¬?)(t|f|[A-Z]¬?)([v|\\^|>])vv";
 	substituicaoPosfixa9 = "$1$2$3$4$5$6v$7$8$9v";
 	
 	padraoPosfixa10 = "(t|f|[A-Z]¬?)"
