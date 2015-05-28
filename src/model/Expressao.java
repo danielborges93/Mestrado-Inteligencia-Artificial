@@ -251,8 +251,8 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "A^(Bv(C>D))";
-	String in2 = "(A^B)v(A^(C>D))";
+	String in1 = "Av(B^(C>D))";
+	String in2 = "(AvB)^(Av(C>D))";
 
 	Expressao e1 = new Expressao(in1);
 	Expressao e2 = new Expressao(in2);
