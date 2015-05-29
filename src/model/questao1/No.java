@@ -3,6 +3,7 @@ package model.questao1;
 import baseDeDados.EquivalenciasLogicas;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import model.Expressao;
@@ -35,12 +36,18 @@ public class No {
     private String equivalenciaUtilizada;
 
     /**
+     * Indica se o nó já foi avaliado pela busca.
+     */
+    private boolean foiAvaliado;
+
+    /**
      * Construtor.
      *
-     * @param expressaoStr
+     * @param expressaoStr Expressão na forma posfixa.
      */
     public No(String expressaoStr) {
 	this.expressao = expressaoStr;
+	this.foiAvaliado = false;
     }
 
     /**
@@ -88,6 +95,9 @@ public class No {
 	// Guardar a lista de filhos
 	this.filhos = filhosTemp;
 
+	// Diz que o nó já foi avaliado
+	this.foiAvaliado = true;
+
 	return filhosTemp;
     }
 
@@ -96,7 +106,7 @@ public class No {
 	// de '(', ')', '¬', '^', 'v', '>', 't' ou 'f'
 	Pattern pattern = Pattern.compile("([A-Z])");
 	Matcher matcher = pattern.matcher(this.expressao);
-	return !matcher.find();
+	return !matcher.find() && this.expressao.length() == 1;
     }
 
     /**
@@ -127,11 +137,41 @@ public class No {
 	return equivalenciaUtilizada;
     }
 
+    /**
+     * Diz se o nó já foi avaliado.
+     *
+     * @return Retorna <code>true</code> se o nó já foi avaliado. Caso
+     * contrário, <code>false</code>.
+     */
+    public boolean foiAvaliado() {
+	return foiAvaliado;
+    }
+
     @Override
     public String toString() {
 	return Expressao.posfixaParaInfixa(expressao);
 //	System.out.println(Expressao.posfixaParaInfixa(expressao));
+//	return Expressao.posfixaParaInfixa(expressao) + " (" + equivalenciaUtilizada + ")";
 //	return expressao + " (" + equivalenciaUtilizada + ")";
+    }
+
+    @Override
+    public int hashCode() {
+	int hash = 5;
+	hash = 11 * hash + Objects.hashCode(this.expressao);
+	return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (obj == null) {
+	    return false;
+	}
+	if (getClass() != obj.getClass()) {
+	    return false;
+	}
+	final No other = (No) obj;
+	return Objects.equals(this.expressao, other.expressao);
     }
 
 }

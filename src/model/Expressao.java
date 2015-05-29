@@ -251,8 +251,10 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "Av(B^(C>D))";
-	String in2 = "(AvB)^(Av(C>D))";
+	String in1 = "((P^¬R)v(Q^¬R))v(¬PvR)";
+	String in2 = "(((P^¬R)vQ)^((P^¬R)v¬R))v(¬PvR)";
+//	String in1 = "(A>B)v((C>D)^(E>F))";
+//	String in2 = "((C>D)^(E>F))v(A>B)";
 
 	Expressao e1 = new Expressao(in1);
 	Expressao e2 = new Expressao(in2);
@@ -262,6 +264,12 @@ public class Expressao {
 	
 	System.out.println(pos1);
 	System.out.println(pos2);
+	
+	System.out.println(posfixaParaInfixa("AB>CD^v"));
+	System.out.println(posfixaParaInfixa("AB>CvAB>Dv^"));
+	System.out.println(posfixaParaInfixa("PR¬^QR¬^v"));
+	System.out.println(posfixaParaInfixa("PR¬^QvPR¬^R¬v^"));
+	System.out.println(posfixaParaInfixa("PR¬^QvPR¬^R¬v^P¬Rvv"));
     }
 
 }
