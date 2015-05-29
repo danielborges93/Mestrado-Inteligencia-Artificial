@@ -27,6 +27,14 @@ public class Busca {
      * desnecessários.
      */
     private final Set<String> posfixasGeradas;
+    
+    /**
+     * Nós que já foram gerados. 
+     *
+     * Utilizado para impedir que entre em <i>loop</i> e gere nós
+     * desnecessários.
+     */
+    private final Set<No> nosGerados;
 
     /**
      * Construtor.
@@ -35,6 +43,7 @@ public class Busca {
      */
     public Busca(String raizStr) {
 	this.posfixasGeradas = new HashSet<>();
+	this.nosGerados = new HashSet<>();
 
 	Expressao expressaoRaiz = new Expressao(raizStr);
 
@@ -54,6 +63,8 @@ public class Busca {
 	// Execução com busca em largura
 	Set<No> fronteira = new HashSet();
 	fronteira.add(this.raiz);
+	
+	nosGerados.add(this.raiz);
 
 	return recursaoLargura(fronteira);
     }
@@ -118,17 +129,14 @@ public class Busca {
     }
 
     private No recursaoLargura(Set<No> fronteira) {
+	
+//	System.out.println("fronteira = " + fronteira.size());
+//	Leitor.lerLinha();
 
-	Set<No> novaFronteira = new HashSet<>(fronteira);
+	Set<No> novaFronteira = new HashSet<>();
 
 	// Percorrer os elementos da fronteira
 	for (No no : fronteira) {
-
-	    // Se o nó já foi avaliado...
-	    if (no.foiAvaliado()) {
-		// ...vai para o próximo nó
-		continue;
-	    }
 
 	    // Verificar se o nó é válido
 	    boolean valido = no.valido();
@@ -138,6 +146,9 @@ public class Busca {
 
 		// Gera os nós filhos
 		List<No> filhos = no.geraFilhos();
+		
+		// Remover os nós que já foram gerados
+		filhos.removeAll(nosGerados);
 
 		// Verificar se algum filho é válido
 		for (No filho : filhos) {
@@ -155,6 +166,9 @@ public class Busca {
 	    }
 
 	}
+	
+	// Adicionar os elementos da nova fronteira à lista dos nós gerados
+	nosGerados.addAll(novaFronteira);
 
 	// Se a nova fronteira for igual à anterior...
 	if (novaFronteira.equals(fronteira)) {
@@ -177,25 +191,32 @@ public class Busca {
 	Set<No> nos = new HashSet<>();
 	Set<No> nos2 = new HashSet<>();
 
-	No no1 = new No("A¬");
-	No no2 = new No("B¬");
-	No no3 = new No("C¬");
-	No no4 = new No("B¬");
+	Expressao expressao1 = new Expressao("¬A");
+	Expressao expressao2 = new Expressao("¬B");
+	Expressao expressao3 = new Expressao("¬C");
+	Expressao expressao4 = new Expressao("¬D");
+
+	No no1 = new No(expressao1.getPosfixa());
+	No no2 = new No(expressao2.getPosfixa());
+	No no3 = new No(expressao3.getPosfixa());
+	No no4 = new No(expressao4.getPosfixa());
 
 	nos.add(no1);
-	nos.add(no2);
-	nos.add(no3);
-	nos.add(no4);
+//	nos.add(no2);
 
 	nos2.add(no1);
-//	nos2.add(no2);
+	nos2.add(no2);
 	nos2.add(no3);
 	nos2.add(no4);
+	
+	nos2.removeAll(nos);
 
 	System.out.println("nos = " + nos);
 	System.out.println("nos2 = " + nos2);
 
 	System.out.println("equals = " + nos.equals(nos2));
+	
+	System.out.println("contains = " + nos2.contains(no2));
     }
 
 }
