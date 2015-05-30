@@ -3,6 +3,7 @@ package model.regrasInferencias;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import model.Expressao;
 
 /**
  *
@@ -13,14 +14,14 @@ public abstract class Regra {
     /**
      * Entradas da regra.
      */
-    protected String entrada1;
-    protected String entrada2;
+    protected Expressao entrada1;
+    protected Expressao entrada2;
 
     /**
      * Saída da regra.
      */
-    protected String saida;
-    
+    protected Expressao saida;
+
     /**
      * Nome da regra.
      */
@@ -33,14 +34,26 @@ public abstract class Regra {
      * @return Retorna <code>true</code> se a regra foi utilizada. Caso
      * contrário, <code>false</code>.
      */
-    public abstract boolean usar(List<String> proposicoes);
+    public abstract boolean usar(List<Expressao> proposicoes);
 
     /**
      * Recupera o nome da regra.
+     *
      * @return Retorna o nome da regra.
      */
     public String getNome() {
 	return nome;
+    }
+
+    /**
+     * Recupera as entradas utilizadas pela regra.
+     *
+     * @return Retorna um array de <code>Expressao</code>, onde o primeiro
+     * índice é a primeia entrada e o segundo índice é a segunda entrada.
+     */
+    public Expressao[] getEntradas() {
+	Expressao[] result = {this.entrada1, this.entrada2};
+	return result;
     }
 
     /**

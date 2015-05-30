@@ -2,6 +2,7 @@ package model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import utils.Pilha;
 
 /**
@@ -21,12 +22,12 @@ import utils.Pilha;
  *
  * @author danielborges93
  */
-public class Expressao {
+public class Expressao implements Comparable<Expressao> {
 
     /**
      * String que representa a expressão na forma infixa.
      */
-    private final String infixa;
+    private String infixa;
 
     /**
      * String que representa a expressão na forma posfixa.
@@ -37,11 +38,23 @@ public class Expressao {
      * Construtor.
      *
      * @param infixa Expressão na forma infixa.
+     * @param posfixa Expressão na forma posfixa.
      */
-    public Expressao(String infixa) {
+    public Expressao(String infixa, String posfixa) {
 
-	this.infixa = infixa;
-	this.posfixa = this.converter();
+	// Se a infixa não for nula...
+	if (infixa != null) {
+	    // ...converte para posfixa...
+	    this.posfixa = this.infixaParaPosfixa(infixa);
+	    // ...e depois simplifica a expressão
+	    this.infixa = this.posfixaParaInfixa(this.posfixa);
+	} // Se não se posfixa não for nula...
+	else if (posfixa != null) {
+	    // ...conver para infixa...
+	    this.infixa = this.posfixaParaInfixa(posfixa);
+	    // ... e depois salva a posfixa
+	    this.posfixa = posfixa;
+	}
 
     }
 
@@ -50,12 +63,12 @@ public class Expressao {
      *
      * @return Retorna uma <code>String</code> no formato posfixo.
      */
-    private String converter() {
+    private String infixaParaPosfixa(String infixa) {
 
 	StringBuilder pos = new StringBuilder();
 	Pilha<Character> pilha = new Pilha<>();
 
-	for (char c : this.infixa.toCharArray()) {
+	for (char c : infixa.toCharArray()) {
 	    switch (c) {
 		case '(':
 		    pilha.empilha(c);
@@ -103,6 +116,49 @@ public class Expressao {
 	}
 
 	return pos.toString();
+    }
+
+    /**
+     * Função que converte uma expressão da forma posfixa para a infixa.
+     *
+     * @param posfixa Expressão na forma posfixa.
+     * @return Retorna uma <code>String</code> que representa a expressão na
+     * forma infixa.
+     */
+    public String posfixaParaInfixa(String posfixa) {
+
+	// Pilha para guardar as expressões
+	Pilha<String> pilha = new Pilha<>();
+
+	// Percorrer toda a expressão posfixa
+	for (char c : posfixa.toCharArray()) {
+	    // Se for uma letra de A a Z, e se for diferente de 'v'...
+	    if (Character.isAlphabetic(c) && c != 'v') {
+		// ...empilha o caractere
+		pilha.empilha("" + c);
+	    } // Se não for é porque é um operador
+	    else if (c == '¬') { // Primeiro verifica se é uma negação
+		// Desempilha o operando e empilha a expressão infixa
+		String operando = pilha.desempilha();
+		pilha.empilha("¬" + operando);
+	    } else { // Entra aqui se for qualquer outro operador
+		// Desempilha os dois operandos
+		String operando2 = pilha.desempilha();
+		String operando1 = pilha.desempilha();
+
+		// Empilha a expressão infixa
+		String infixaLocal = "(" + operando1 + c + operando2 + ")";
+		pilha.empilha(infixaLocal);
+	    }
+	}
+
+	String infixaLocal = pilha.desempilha();
+
+	if (infixaLocal.length() > 1) {
+	    return infixaLocal.substring(1, infixaLocal.length() - 1);
+	} else {
+	    return infixaLocal;
+	}
     }
 
     /**
@@ -195,54 +251,47 @@ public class Expressao {
     public String getPosfixa() {
 	// Verificar se não existe a posfixa
 	if (null == this.posfixa) {
-	    this.posfixa = this.converter();
+	    this.posfixa = this.infixaParaPosfixa(this.infixa);
 	}
 
 	// Retorna
 	return posfixa;
     }
 
-    /**
-     * Função que converte uma expressão da forma posfixa para a infixa.
-     *
-     * @param posfixa Expressão na forma posfixa.
-     * @return Retorna uma <code>String</code> que representa a expressão na
-     * forma infixa.
-     */
-    public static String posfixaParaInfixa(String posfixa) {
+    @Override
+    public int hashCode() {
+	int hash = 7;
+	hash = 67 * hash + Objects.hashCode(this.infixa);
+	hash = 67 * hash + Objects.hashCode(this.posfixa);
+	return hash;
+    }
 
-	// Pilha para guardar as expressões
-	Pilha<String> pilha = new Pilha<>();
-
-	// Percorrer toda a expressão posfixa
-	for (char c : posfixa.toCharArray()) {
-	    // Se for uma letra de A a Z, e se for diferente de 'v'...
-	    if (Character.isAlphabetic(c) && c != 'v') {
-		// ...empilha o caractere
-		pilha.empilha("" + c);
-	    } // Se não for é porque é um operador
-	    else if (c == '¬') { // Primeiro verifica se é uma negação
-		// Desempilha o operando e empilha a expressão infixa
-		String operando = pilha.desempilha();
-		pilha.empilha("¬" + operando);
-	    } else { // Entra aqui se for qualquer outro operador
-		// Desempilha os dois operandos
-		String operando2 = pilha.desempilha();
-		String operando1 = pilha.desempilha();
-
-		// Empilha a expressão infixa
-		String infixa = "(" + operando1 + c + operando2 + ")";
-		pilha.empilha(infixa);
-	    }
+    @Override
+    public boolean equals(Object obj) {
+	if (obj == null) {
+	    return false;
 	}
-
-	String infixa = pilha.desempilha();
-
-	if (infixa.length() > 1) {
-	    return infixa.substring(1, infixa.length() - 1);
-	} else {
-	    return infixa;
+	if (getClass() != obj.getClass()) {
+	    return false;
 	}
+	final Expressao other = (Expressao) obj;
+	if (!Objects.equals(this.infixa, other.infixa)) {
+	    return false;
+	}
+	if (!Objects.equals(this.posfixa, other.posfixa)) {
+	    return false;
+	}
+	return true;
+    }
+
+    @Override
+    public int compareTo(Expressao o) {
+	return this.infixa.compareTo(o.infixa);
+    }
+
+    @Override
+    public String toString() {
+	return this.infixa;
     }
 
     /**
@@ -251,25 +300,23 @@ public class Expressao {
      * @param args
      */
     public static void main(String[] args) {
-	String in1 = "((P^¬R)v(Q^¬R))v(¬PvR)";
-	String in2 = "(((P^¬R)vQ)^((P^¬R)v¬R))v(¬PvR)";
+	String in1 = "A>B";
+	String in2 = "A>C";
 //	String in1 = "(A>B)v((C>D)^(E>F))";
 //	String in2 = "((C>D)^(E>F))v(A>B)";
 
-	Expressao e1 = new Expressao(in1);
-	Expressao e2 = new Expressao(in2);
-
-	String pos1 = e1.converter();
-	String pos2 = e2.converter();
+	Expressao e1 = new Expressao(in1, null);
+	Expressao e2 = new Expressao(in2, null);
 	
+	System.out.println("e1 = " + e1);
+	System.out.println("e2 = " + e2);
+
+	String pos1 = e1.getPosfixa();
+	String pos2 = e2.getPosfixa();
+
 	System.out.println(pos1);
 	System.out.println(pos2);
-	
-	System.out.println(posfixaParaInfixa("AB>CD^v"));
-	System.out.println(posfixaParaInfixa("AB>CvAB>Dv^"));
-	System.out.println(posfixaParaInfixa("PR¬^QR¬^v"));
-	System.out.println(posfixaParaInfixa("PR¬^QvPR¬^R¬v^"));
-	System.out.println(posfixaParaInfixa("PR¬^QvPR¬^R¬v^P¬Rvv"));
+
     }
 
 }

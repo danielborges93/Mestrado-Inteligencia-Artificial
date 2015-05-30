@@ -48,7 +48,7 @@ public class Questao1 {
 
 	for (String proposicao : proposicoesArray) {
 	    // Converter
-	    Expressao expressao = new Expressao(proposicao);
+	    Expressao expressao = new Expressao(proposicao, null);
 	    proposicoesList.add(expressao);
 
 	    // Recuperar os operandos
@@ -124,11 +124,11 @@ public class Questao1 {
 	    }
 
 	    // Resolver a conjunção
-	    Expressao conjuncao = new Expressao(conjuncaoStr.toString());
+	    Expressao conjuncao = new Expressao(conjuncaoStr.toString(), null);
 	    linha[colunaAtual++] = conjuncao.resolver(valores);
 
 	    // Resolver a consequência do teorema 1
-	    Expressao consequencia = new Expressao(consequenciaStr);
+	    Expressao consequencia = new Expressao(consequenciaStr, null);
 	    linha[colunaAtual++] = consequencia.resolver(valores);
 
 	    // Resolver o implica do teorema 1
@@ -136,12 +136,12 @@ public class Questao1 {
 		    + (linha[colunaAtual - 2] ? 't' : 'f')
 		    + ">"
 		    + (linha[colunaAtual - 1] ? 't' : 'f');
-	    Expressao teorema1 = new Expressao(teorema1Str);
+	    Expressao teorema1 = new Expressao(teorema1Str, null);
 	    linha[colunaAtual++] = teorema1.resolver(valores);
 
 	    // Resolver a consequência do teorema 2
 	    String consequencia2Str = "¬(" + consequenciaStr + ")";
-	    Expressao consequencia2 = new Expressao(consequencia2Str);
+	    Expressao consequencia2 = new Expressao(consequencia2Str, null);
 	    linha[colunaAtual++] = consequencia2.resolver(valores);
 
 	    // Resolver o implica do teorema 1
@@ -149,7 +149,7 @@ public class Questao1 {
 		    + (linha[colunaAtual - 4] ? 't' : 'f')
 		    + "^"
 		    + (linha[colunaAtual - 1] ? 't' : 'f');
-	    Expressao teorema2 = new Expressao(teorema2Str);
+	    Expressao teorema2 = new Expressao(teorema2Str, null);
 	    linha[colunaAtual++] = teorema2.resolver(valores);
 
 	}

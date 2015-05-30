@@ -45,7 +45,7 @@ public class Busca {
 	this.posfixasGeradas = new HashSet<>();
 	this.nosGerados = new HashSet<>();
 
-	Expressao expressaoRaiz = new Expressao(raizStr);
+	Expressao expressaoRaiz = new Expressao(raizStr, null);
 
 	this.raiz = new No(expressaoRaiz.getPosfixa());
 	this.posfixasGeradas.add(this.raiz.getExpressao());
@@ -191,10 +191,10 @@ public class Busca {
 	Set<No> nos = new HashSet<>();
 	Set<No> nos2 = new HashSet<>();
 
-	Expressao expressao1 = new Expressao("¬A");
-	Expressao expressao2 = new Expressao("¬B");
-	Expressao expressao3 = new Expressao("¬C");
-	Expressao expressao4 = new Expressao("¬D");
+	Expressao expressao1 = new Expressao("¬A", null);
+	Expressao expressao2 = new Expressao("¬B", null);
+	Expressao expressao3 = new Expressao("¬C", null);
+	Expressao expressao4 = new Expressao("¬D", null);
 
 	No no1 = new No(expressao1.getPosfixa());
 	No no2 = new No(expressao2.getPosfixa());

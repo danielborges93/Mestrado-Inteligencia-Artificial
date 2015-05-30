@@ -1,8 +1,12 @@
 package questao3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import model.Expressao;
 import model.questao3.No;
 
 /**
@@ -14,7 +18,7 @@ public class Questao3 {
     /**
      * Lista de proposições.
      */
-    private final List<String> proposicoes;
+    private final List<Expressao> proposicoes;
 
     /**
      * Construtor.
@@ -34,7 +38,12 @@ public class Questao3 {
 
 	// Adicionar as proposições no arrayList
 	String[] proposicoesArr = proposicoesString.split(", ");
-	this.proposicoes.addAll(Arrays.asList(proposicoesArr));
+	
+	for (String proposicao : proposicoesArr) {
+	    // Cria a expressão
+	    Expressao expressao = new Expressao(proposicao, null);
+	    this.proposicoes.add(expressao);
+	}
 	
 	// Iniciar a busca
 	Busca busca = new Busca(this.proposicoes, consequenciaStr);

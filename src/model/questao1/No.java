@@ -149,7 +149,9 @@ public class No {
 
     @Override
     public String toString() {
-	return Expressao.posfixaParaInfixa(expressao);
+	Expressao expressao1 = new Expressao(null, expressao);
+	
+	return expressao1.getInfixa();
 //	System.out.println(Expressao.posfixaParaInfixa(expressao));
 //	return Expressao.posfixaParaInfixa(expressao) + " (" + equivalenciaUtilizada + ")";
 //	return expressao + " (" + equivalenciaUtilizada + ")";

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import model.Expressao;
 import model.questao3.No;
 import model.regrasInferencias.Absorcao;
 import model.regrasInferencias.Adicao;
@@ -37,12 +38,12 @@ public class Busca {
     /**
      * Set com todas as proposições que já foram geradas, para evitar o loop.
      */
-    private final Set<List<String>> proposicoesGeradas;
+    private final Set<List<Expressao>> proposicoesGeradas;
 
     /**
      * Consequência lógica.
      */
-    private final String consequencia;
+    private final Expressao consequencia;
 
     /**
      * Construtor.
@@ -50,9 +51,9 @@ public class Busca {
      * @param proposicoes Lista de proposições.
      * @param consequencia Consequência lógica.
      */
-    public Busca(List<String> proposicoes, String consequencia) {
-	this.consequencia = consequencia;
-	this.raiz = new No(proposicoes, consequencia);
+    public Busca(List<Expressao> proposicoes, String consequencia) {
+	this.consequencia = new Expressao(consequencia, null);
+	this.raiz = new No(proposicoes, this.consequencia);
 	this.regras = new ArrayList<>();
 	this.proposicoesGeradas = new HashSet<>();
 
