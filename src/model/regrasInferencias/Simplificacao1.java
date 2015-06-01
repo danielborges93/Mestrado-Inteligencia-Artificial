@@ -15,40 +15,38 @@ public class Simplificacao1 extends Regra {
      * Construtor...
      */
     public Simplificacao1() {
-//        this.entrada1 = "^(¬?[A-Z])v(¬?[A-Z])$";
 	this.nome = "Simplificação";
     }
     
     @Override
     public boolean usar(List<Expressao> proposicoes) {
 	
-//        String proposicaoValida = null;
-//        String novaProposicao = null;
-//        
-//        // Percorrer as proposições para encontrar o padrão
-//        for(String proposicao : proposicoes) {
-//            // Encontrar o padrão
-//            Pattern pattern = Pattern.compile(this.entrada1);
-//            Matcher matcher = pattern.matcher(proposicao);
-//            
-//            // Se encontrar o padrão...
-//            if(matcher.find()) {
-//                // ...guarda a proposição
-//                proposicaoValida = proposicao;
-//                novaProposicao = matcher.group(1);
-//                
-//                break;
-//            }
-//        }
-//        
-//        // Verifica se achou as proposições
-//        if(proposicaoValida != null && novaProposicao != null) {
-//            // Se encontrou, remove a proposição antiga e adiciona a nova
-//            proposicoes.remove(proposicaoValida);
-//            proposicoes.add(novaProposicao);
-//            
-//            return true;
-//        }
+        // Percorrer as proposições para encontrar o padrão
+        for(Expressao proposicao : proposicoes) {
+            // Encontrar o padrão
+            Pattern pattern = Pattern.compile("^(¬?.+)\\^(¬?.+)$");
+            Matcher matcher = pattern.matcher(proposicao.getInfixa());
+            
+            // Se encontrar o padrão...
+            if(matcher.find()) {
+                // Salva a entrada
+                this.entrada1 = proposicao;
+		
+		// Salva a saída
+                this.saida = new Expressao(matcher.group(1), null);
+                
+                break;
+            }
+        }
+        
+        // Verifica se achou as proposições
+        if(this.entrada1 != null && this.saida != null) {
+            // Se encontrou, remove a proposição antiga e adiciona a nova
+            proposicoes.remove(this.entrada1);
+            proposicoes.add(this.saida);
+            
+            return true;
+        }
         
         return false;
     }
