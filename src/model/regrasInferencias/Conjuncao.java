@@ -10,49 +10,47 @@ import model.Expressao;
 public class Conjuncao extends Regra {
 
     public Conjuncao() {
-//	this.entrada1 = "^([A-Z])$";
 	this.nome = "Conjunção";
     }
 
     @Override
     public boolean usar(List<Expressao> proposicoes) {
+	
+	// Percorrer as proposições
+	for (Expressao proposicao : proposicoes) {
 
-//	// Contador
-//	int count = 0;
-//
-//	// Armazenar as duas entradas nesse array
-//	String[] entradas = new String[2];
-//
-//	// Percorrer as proposições
-//	for (String proposicao : proposicoes) {
-//
-//	    // Verificar se já foram encontradas as duas entradas
-//	    if (count > 1) {
-//		break; // Para tudo!
-//	    }
-//
-//	    // Se a proposição tiver tamanho 1...
-//	    if (proposicao.length() == 1) {
-//		// ...guardo ela
-//		entradas[count++] = proposicao;
-//	    }
-//	}
-//
-//	// Se tiverem as duas entradas
-//	if (count == 2) {
-//
-//	    // Remover as duas proposições da lista
-//	    proposicoes.remove(entradas[0]);
-//	    proposicoes.remove(entradas[1]);
-//
-//	    // Cria a nova proposição
-//	    String novaProposicao = entradas[0] + "^" + entradas[1];
-//
-//	    // Adiciona na lista de proposições
-//	    proposicoes.add(novaProposicao);
-//
-//	    return true;
-//	}
+	    // Verificar se já foram encontradas as duas entradas
+	    if ((this.entrada1 != null) && (this.entrada2 != null)) {
+		break; // Para tudo!
+	    }
+
+	    // Se a proposição tiver tamanho 1...
+	    if (proposicao.getInfixa().length() == 1) {
+		// ...guardo ela
+		if (this.entrada1 == null) {
+		    this.entrada1 = proposicao;
+		} else {
+		    this.entrada2 = proposicao;
+		}
+	    }
+	}
+
+	// Se tiverem as duas entradas
+	if ((this.entrada1 != null) && (this.entrada2 != null)) {
+
+	    // Remover as duas proposições da lista
+	    proposicoes.remove(this.entrada1);
+	    proposicoes.remove(this.entrada2);
+
+	    // Cria a nova proposição
+	    String novaProposicaoString = this.entrada1 + "^" + this.entrada2;
+	    Expressao novaProposicao = new Expressao(novaProposicaoString, null);
+
+	    // Adiciona na lista de proposições
+	    proposicoes.add(novaProposicao);
+
+	    return true;
+	}
 
 	return false;
     }
