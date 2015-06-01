@@ -12,51 +12,47 @@ import model.Expressao;
 public class Absorcao extends Regra {
 
     public Absorcao() {
-//	this.entrada1 = "^([A-Z])>([A-Z])$";
-//	this.saida = "$1>($1^$2)";
 	this.nome = "Absorção";
     }
     
     @Override
     public boolean usar(List<Expressao> proposicoes) {
 	
-//	// posição da proposição
-//	int posicao = -1;
-//	
-//	// Proposição de entrada
-//	String prop = null;
-//	
-//	// Percorrer a lista
-//	for (String proposicao : proposicoes) {
-//	    
-//	    // Detectar o padrão
-//	    Pattern pattern = Pattern.compile(this.entrada1);
-//	    Matcher matcher = pattern.matcher(proposicao);
-//	    
-//	    // Se foi detectado o padrão...
-//	    if(matcher.find()) {
-//		posicao = proposicoes.indexOf(proposicao);
-//		prop = proposicao;
-//		break;
-//	    }
-//	}
-//	
-//	// Verifica se achou algo
-//	if (posicao > -1) {
-//	    // Se sim...
-//	    
-//	    // Remove a entrada da lista
-//	    proposicoes.remove(prop);
-//	    
-//	    // Cria a nova proposição
-//	    Pattern pattern = Pattern.compile(this.entrada1);
-//	    Matcher matcher = pattern.matcher(prop);
-//	    
-//	    prop = matcher.replaceAll(this.saida);
-//	    proposicoes.add(prop);
-//	    
-//	    return true;
-//	}
+	// Percorrer a lista
+	for (Expressao proposicao : proposicoes) {
+	    
+	    // Detectar o padrão
+	    Pattern pattern = Pattern.compile("^(¬?.+)>(¬?.+)$");
+	    Matcher matcher = pattern.matcher(proposicao.getInfixa());
+	    
+	    // Se foi detectado o padrão...
+	    if(matcher.find()) {
+		// Salvar a entrada
+		this.entrada1 = proposicao;
+		break;
+	    }
+	}
+	
+	// Verifica se achou a entrada
+	if (this.entrada1 != null) {
+	    // Se sim...
+	    
+	    // Remove a entrada da lista
+	    proposicoes.remove(this.entrada1);
+	    
+	    // Cria a nova proposição
+	    Pattern pattern = Pattern.compile("^(¬?.+)>(¬?.+)$");
+	    Matcher matcher = pattern.matcher(this.entrada1.getInfixa());
+	    
+	    // Recupera a nova expressão em String
+	    String saidaString = matcher.replaceAll("$1>($1^$2)");
+	    
+	    // Cria a nova Expressão e adiciona na lista de proposições
+	    this.saida = new Expressao(saidaString, null);
+	    proposicoes.add(this.saida);
+	    
+	    return true;
+	}
 	
 	return false;
     }

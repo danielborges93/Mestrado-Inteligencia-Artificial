@@ -33,6 +33,11 @@ public class No {
      * Regra que foi utilizada para gerar esse nó.
      */
     private String regraUtilizada;
+    
+    /**
+     * Array com as expressões utilizadas para gerar o nó.
+     */
+    private Expressao[] expressoesUtilizadas;
 
     /**
      * Construtor.
@@ -74,6 +79,7 @@ public class No {
 		No filho = new No(proposicoesCopy, this.consequencia);
 		filho.pai = this;
 		filho.regraUtilizada = regra.getNome();
+		filho.expressoesUtilizadas = regra.getEntradas();
 
 		filhos.add(filho);
 	    }

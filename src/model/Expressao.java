@@ -125,7 +125,7 @@ public class Expressao implements Comparable<Expressao> {
      * @return Retorna uma <code>String</code> que representa a expressão na
      * forma infixa.
      */
-    public String posfixaParaInfixa(String posfixa) {
+    private String posfixaParaInfixa(String posfixa) {
 
 	// Pilha para guardar as expressões
 	Pilha<String> pilha = new Pilha<>();
