@@ -30,10 +30,10 @@ public class Lista1 {
 	String consequenciaStr = Leitor.lerLinha();
 
 	Questao1 questao1 = new Questao1();
-//	questao1.exec(proposicoesString, consequenciaStr);
+	questao1.exec(proposicoesString, consequenciaStr);
 	
 	Questao3 questao3 = new Questao3();
-//	questao3.exec(proposicoesString, consequenciaStr);
+	questao3.exec(proposicoesString, consequenciaStr);
 	
 	Questao2 questao2 = new Questao2();
 	String[] result = questao2.exec();
