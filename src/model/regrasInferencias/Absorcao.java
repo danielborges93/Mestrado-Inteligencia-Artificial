@@ -22,7 +22,7 @@ public class Absorcao extends Regra {
 	for (Expressao proposicao : proposicoes) {
 	    
 	    // Detectar o padrão
-	    Pattern pattern = Pattern.compile("^(¬?.+)>(¬?.+)$");
+	    Pattern pattern = Pattern.compile("^([A-Z])>([A-Z])$");
 	    Matcher matcher = pattern.matcher(proposicao.getInfixa());
 	    
 	    // Se foi detectado o padrão...
@@ -41,7 +41,7 @@ public class Absorcao extends Regra {
 	    proposicoes.remove(this.entrada1);
 	    
 	    // Cria a nova proposição
-	    Pattern pattern = Pattern.compile("^(¬?.+)>(¬?.+)$");
+	    Pattern pattern = Pattern.compile("^([A-Z])>([A-Z])$");
 	    Matcher matcher = pattern.matcher(this.entrada1.getInfixa());
 	    
 	    // Recupera a nova expressão em String

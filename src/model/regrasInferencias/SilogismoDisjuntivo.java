@@ -24,7 +24,7 @@ public class SilogismoDisjuntivo extends Regra {
 	// Percorrer as proposições
 	for (Expressao proposicao : proposicoes) {
 	    // Tentar encontrar o padrão
-	    Pattern pattern = Pattern.compile("^(¬?.+)v(¬?.+)$");
+	    Pattern pattern = Pattern.compile("^([A-Z])v([A-Z])$");
 	    Matcher matcher = pattern.matcher(proposicao.getInfixa());
 
 	    // Se encontrar

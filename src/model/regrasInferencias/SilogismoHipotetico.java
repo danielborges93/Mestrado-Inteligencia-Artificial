@@ -25,7 +25,7 @@ public class SilogismoHipotetico extends Regra {
 	// Percorrer todas as proposições
 	for (Expressao proposicao : proposicoes) {
 	    // Tentar encontrar o padrão
-	    Pattern pattern = Pattern.compile("^(¬?.+)>(¬?.+)$");
+	    Pattern pattern = Pattern.compile("^([A-Z])>([A-Z])$");
 	    Matcher matcher = pattern.matcher(proposicao.getInfixa());
 
 	    // Se encontrar...
@@ -39,12 +39,12 @@ public class SilogismoHipotetico extends Regra {
 	forPrincipal:
 	for (Expressao proposicao1 : entradasPossiveis) {
 	    // Pegar o padrão
-	    Pattern pattern = Pattern.compile("^(¬?.+)>(¬?.+)$");
+	    Pattern pattern = Pattern.compile("^([A-Z])>([A-Z])$");
 	    Matcher matcher = pattern.matcher(proposicao1.getInfixa());
 	    matcher.find();
 
 	    // Criar a segunda entrada e tentar encontrar
-	    String patternStr2 = "^" + matcher.group(2) + ">(¬?.+)$";
+	    String patternStr2 = "^" + matcher.group(2) + ">([A-Z])$";
 
 	    // Ver se existe alguma entrada compatível
 	    for (Expressao proposicao2 : entradasPossiveis) {

@@ -25,7 +25,7 @@ public class ModusPonens extends Regra {
 	// Percorrer as proposições
 	for (Expressao proposicao : proposicoes) {
 	    // Tentar encontrar o padrão
-	    Pattern pattern = Pattern.compile("^(¬?.+)>(¬?.+)$");
+	    Pattern pattern = Pattern.compile("^(¬?[A-Z])>(¬?[A-Z])$");
 	    Matcher matcher = pattern.matcher(proposicao.getInfixa());
 	    
 	    // Se encontrar

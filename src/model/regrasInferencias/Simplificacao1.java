@@ -24,7 +24,7 @@ public class Simplificacao1 extends Regra {
         // Percorrer as proposições para encontrar o padrão
         for(Expressao proposicao : proposicoes) {
             // Encontrar o padrão
-            Pattern pattern = Pattern.compile("^(¬?.+)\\^(¬?.+)$");
+            Pattern pattern = Pattern.compile("^(¬?[A-Z])v(¬?[A-Z])$");
             Matcher matcher = pattern.matcher(proposicao.getInfixa());
             
             // Se encontrar o padrão...
