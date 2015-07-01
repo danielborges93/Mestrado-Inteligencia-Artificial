@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import model.Expressao;
+import model.TipoBusca;
 import model.questao3.No;
 
 /**
@@ -47,7 +48,7 @@ public class Questao3 {
 	
 	// Iniciar a busca
 	Busca busca = new Busca(this.proposicoes, consequenciaStr);
-	No no = busca.buscar();
+	No no = busca.buscar(TipoBusca.LARGURA);
 	
 	// Imprimir o caminho percorrido
 	System.out.println("Utilizando regras de inferência:");

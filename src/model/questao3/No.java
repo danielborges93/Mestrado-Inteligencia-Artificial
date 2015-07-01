@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import model.Expressao;
 import model.regrasInferencias.Regra;
@@ -46,6 +47,13 @@ public class No {
      * @param consequencia
      */
     public No(List<Expressao> proposicoes, Expressao consequencia) {
+	
+	// Remover as proposições repetidas
+	Set<Expressao> set = new HashSet<>(proposicoes);
+	proposicoes.clear();
+	proposicoes.addAll(set);
+	
+	// Setar as propiedades
 	this.proposicoes = proposicoes;
 	this.consequencia = consequencia;
 	
@@ -127,6 +135,32 @@ public class No {
 		.append(this.consequencia);
 
 	return builder.toString();
+    }
+
+    @Override
+    public int hashCode() {
+	int hash = 5;
+	hash = 89 * hash + Objects.hashCode(this.proposicoes);
+	hash = 89 * hash + Objects.hashCode(this.consequencia);
+	return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (obj == null) {
+	    return false;
+	}
+	if (getClass() != obj.getClass()) {
+	    return false;
+	}
+	final No other = (No) obj;
+	if (!Objects.equals(this.proposicoes, other.proposicoes)) {
+	    return false;
+	}
+	if (!Objects.equals(this.consequencia, other.consequencia)) {
+	    return false;
+	}
+	return true;
     }
 
     /**

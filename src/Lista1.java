@@ -29,20 +29,12 @@ public class Lista1 {
 	System.out.println("Digite a consequência: ");
 	String consequenciaStr = Leitor.lerLinha();
 
-//	System.out.println("Execução da primeira questão...");
-//	System.out.println("");
 	Questao1 questao1 = new Questao1();
-	questao1.exec(proposicoesString, consequenciaStr);
+//	questao1.exec(proposicoesString, consequenciaStr);
 	
-//	System.out.println("");
-//	System.out.println("Execução da terceira questão...");
-//	System.out.println("");
 	Questao3 questao3 = new Questao3();
-	questao3.exec(proposicoesString, consequenciaStr);
+//	questao3.exec(proposicoesString, consequenciaStr);
 	
-//	System.out.println("");
-//	System.out.println("Execução da segunda questão...");
-//	System.out.println("");
 	Questao2 questao2 = new Questao2();
 	String[] result = questao2.exec();
 	
@@ -60,23 +52,6 @@ public class Lista1 {
         questao3 = new Questao3();
         questao3.exec(result[0], result[1]);
 	
-//        
-//        String str = "Av(B^C)";
-//        String[] arr = str.split("[A-Z]");
-//	
-//        Pattern pattern = Pattern.compile("([A-Z]*)");
-//        Matcher matcher = pattern.matcher(str);
-//        System.out.println(matcher.groupCount());
-//	System.out.println(Arrays.toString(arr));
-//	System.out.println(arr.length);
-//	
-//	for (char c : str.toCharArray()) {
-//	    System.out.println(c + " " + (Character.isAlphabetic(c) && c!='v'));
-//	}
-//	
-//        str = str.replaceFirst("([A-Z]v\\([A-Z]\\^[A-Z]\\))", "(AvB)^(AvC)");
-//        System.out.println(str);
-
     }
 
 }

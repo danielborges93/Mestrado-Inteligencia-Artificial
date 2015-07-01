@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import model.Expressao;
+import model.TipoBusca;
 import model.questao1.No;
 
 /**
@@ -299,7 +300,7 @@ public class Questao1 {
 
 	// Começar a busca do teorema 1...
 	Busca buscaTeorema1 = new Busca(teorema1);
-	No no = buscaTeorema1.buscar();
+	No no = buscaTeorema1.buscar(TipoBusca.LARGURA);
 
 	conclusaoTeorema(1, no);
 
@@ -317,7 +318,7 @@ public class Questao1 {
 
 	// Começar a busca do teorema 1...
 	Busca buscaTeorema2 = new Busca(teorema2);
-	No no2 = buscaTeorema2.buscar();
+	No no2 = buscaTeorema2.buscar(TipoBusca.LARGURA);
 
 	conclusaoTeorema(2, no2);
     }

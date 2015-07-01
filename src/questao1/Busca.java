@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import model.Expressao;
+import model.TipoBusca;
 import model.questao1.No;
 import utils.Leitor;
 
@@ -56,17 +57,20 @@ public class Busca {
      *
      * @return Nó que deu certo.
      */
-    public No buscar() {
-	// Execução com busca em profundidade
-//	return recursaoProfundidade(this.raiz);
+    public No buscar(TipoBusca tipoBusca) {
+	if (tipoBusca == TipoBusca.PROFUNDIDADE) {
+	    // Execução com busca em profundidade
+	    return recursaoProfundidade(this.raiz);
+	}
+	else {
+	    // Execução com busca em largura
+	    Set<No> fronteira = new HashSet();
+	    fronteira.add(this.raiz);
 
-	// Execução com busca em largura
-	Set<No> fronteira = new HashSet();
-	fronteira.add(this.raiz);
-	
-	nosGerados.add(this.raiz);
+	    nosGerados.add(this.raiz);
 
-	return recursaoLargura(fronteira);
+	    return recursaoLargura(fronteira);
+	}
     }
 
     /**
