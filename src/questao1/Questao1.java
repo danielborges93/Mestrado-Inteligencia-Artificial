@@ -183,10 +183,10 @@ public class Questao1 {
 
 	// Imprimir a conclusão retirada da tabela verdade
 	String nao = peloTeorema1 ? " " : " não ";
-	System.out.println("De acordo coma a tabela verdade, pelo teorema 1," + nao + "é consequência lógica.");
+	System.out.println("De acordo com a tabela verdade, pelo teorema 1," + nao + "é consequência lógica.");
 
 	nao = peloTeorema2 ? " " : " não ";
-	System.out.println("De acordo coma a tabela verdade, pelo teorema 2," + nao + "é consequência lógica.");
+	System.out.println("De acordo com a tabela verdade, pelo teorema 2," + nao + "é consequência lógica.");
 
 	System.out.println();
     }
