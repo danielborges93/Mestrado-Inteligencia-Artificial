@@ -23,6 +23,8 @@ NEGAÇÃO | ¬
 A utilização de expressões regulares foi fundamental para o processo de desenvovimento deste trabalho. Através dela foi possível identificar os padrões em textos (expressões, nesse contexto) para que tais padrões pudessem ser utilizados em determinadas operações específicas de cada problema proposto.
 
 ## Implementação
+Este trabalho foi implementado utilizando a linguagem de programação `Java`, sem a utilização de bibliotecas extenas.
+
 ### Questão 1
 **OBS.:** Todas as operações nesta questão foram baseadas na notação posfixa, ou polonesa invertida (vide [Wikipedia](http://pt.wikipedia.org/wiki/Nota%C3%A7%C3%A3o_polonesa_inversa)).
 
@@ -56,8 +58,8 @@ Tabela verdade:
 |false	|true	|true	|false	|false	|true	|true	|false	|false	|
 |true	|true	|true	|true	|true	|true	|true	|false	|false	|
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-De acordo coma a tabela verdade, pelo teorema 1, é consequência lógica.
-De acordo coma a tabela verdade, pelo teorema 2, é consequência lógica.
+De acordo com a tabela verdade, pelo teorema 1, é consequência lógica.
+De acordo com a tabela verdade, pelo teorema 2, é consequência lógica.
 ```
 
 #### Letra B
@@ -123,6 +125,48 @@ consequência: ¬A
 ```
 
 #### Dificuldades
+A similaridade é a grande dificuldade desta questão. Frases similares (com o mesmo significado) não são detectadas pelo programa. Por exemplo, `José jogou a pedra` é diferente de `José lançou a pedra`.
+
+O mesmo segue para negações de afirmações. Se em uma sentença for dito `Maria gosta de feijão`, a negação teria que ser `não Maria gosta de feijão`, pois ao dizer `Maria não gosta de feijão` o programa entende como uma afirmação diferente e não como a negação da afirmação anterior.
 
 ### Questão 3
-Como na questão 1.B, foi realizada uma busca em profundidade utilizando as regras de inferência para gerar os nós filhos.
+A lógica utilizada nesta questão foi a mesma utilizada na questão **1.B**, utilizando busca em largura. Utilizando a seguinte entrada:
+```
+Digite as proposições: 
+P>S, S>U, P
+Digite a consequência: 
+U
+```
+temos a seguinte saída:
+```
+Utilizando regras de inferência:
+P
+P>S
+S>U
+-------------
+U
+
+Regra utilizada: Modus Ponens
+S
+S>U
+-------------
+U
+
+Regra utilizada: Modus Ponens
+U
+-------------
+U
+```
+
+#### Dificuldades
+Identificar os nós que foram já gerados anteriormente foi complicado de ser implementado, pois vários fatores influenciam na diferenciação de cada nó, de acordo com o código. Mas esse problema foi resolvido e implementado.
+
+## Execução
+Para executar o programa, basta baixar a [última *release*](https://github.com/danielborges93/Provador-Logico/releases/latest) e executar o seguinte comando no Terminal/Prompt de comando:
+```shell
+java -jar Provador_Logico.jar
+```
+
+## Limitações
+- Para a questão **1**, as proposições se limitam a até 2 variáveis atômicas. Por exemplo, `A>B` e `(AvB)>C` são aceitos, mas `(AvBvC)>D` não;
+- Para a questão **3**, as proposições se limitam a até 1 variável atômica. Por exemplo `A>B` é aceito, mas `(AvB)>C` não.
